@@ -3,7 +3,4 @@ Tabla de modelo E/R
 Tabla de relación 
 ![Captura de pantalla 2023-04-24 092715](https://user-images.githubusercontent.com/118363138/233928011-1aaa831b-d2bf-44ed-ac7c-6fa8d83c0c35.jpg)
 Normalización
-[Untitled (Draft).pdf](https://github.com/ddrojovillalba/ProyectoIntegrador/files/11307825/Untitled.Draft.pdf)
-
-
-
+[TRABAJO.pdf](https://github.com/ddrojovillalba/ProyectoIntegrador/files/11322182/TRABAJO.pdf)
