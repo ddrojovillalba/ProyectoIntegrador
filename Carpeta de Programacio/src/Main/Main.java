@@ -20,7 +20,6 @@ public class Main {
 	 *             cuando se ejecuta desde la consola.
 	 */
 	public static void main(String[] args) {
-		// TODO Aquí es donde debes poner el código para iniciar y controlar tu aplicación.
 	}
 
 }
