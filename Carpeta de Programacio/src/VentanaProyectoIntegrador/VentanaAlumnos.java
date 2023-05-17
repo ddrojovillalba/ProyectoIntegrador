@@ -1,18 +1,21 @@
 /**
- * 
+ * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
 import javax.swing.*;
-import java.awt.BorderLayout;
 import java.awt.Font;
 
 /**
+ * Clase VentanaAlumnos.
+ * Esta clase es una ventana de la interfaz de usuario que permite gestionar los alumnos.
+ * Hereda de JFrame y proporciona funcionalidades para añadir, consultar, editar y eliminar alumnos.
+ * 
  * @author Mario
- *
  */
 public class VentanaAlumnos extends JFrame {
-	
+
+	// Componentes de la interfaz de usuario
 	JLabel lblAlumnos;
 	JButton btnAñadir;
 	JLabel lblAñadir;
@@ -23,14 +26,24 @@ public class VentanaAlumnos extends JFrame {
 	JButton btnEliminar;
 	JLabel lblEliminar;
 	
+	/**
+	 * Constructor de la clase VentanaAlumnos.
+	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 */
 	public VentanaAlumnos() {
 		super("Gestor de Alumnos");
 		inicializarComponentes();
 	}
 
+	/**
+	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
+	 * Configura el layout, crea e inicializa las etiquetas y los botones, y los añade al contenedor principal.
+	 */
 	public void inicializarComponentes() {
 		getContentPane().setLayout(null);
 		
+		// Creación e inicialización de los componentes de la interfaz de usuario
+
 		lblAlumnos = new JLabel("Alumnos");
 		lblAlumnos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblAlumnos.setBounds(10, 22, 88, 20);
