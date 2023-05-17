@@ -1,5 +1,5 @@
 /**
- * 
+ * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
@@ -7,11 +7,15 @@ import javax.swing.*;
 import java.awt.Font;
 
 /**
+ * Clase VentanaAreas.
+ * Esta clase es una ventana de la interfaz de usuario que permite gestionar las áreas.
+ * Hereda de JFrame y proporciona funcionalidades para añadir, consultar, editar y eliminar áreas.
+ * 
  * @author Mario
- *
  */
 public class VentanaAreas extends JFrame {
 
+	// Componentes de la interfaz de usuario
 	JLabel lblAreas;
 	JLabel lblAñadir;
 	JLabel lblConsultar;
@@ -22,15 +26,24 @@ public class VentanaAreas extends JFrame {
 	JButton btnEditar;
 	JButton btnEliminar;
 	
-	
+	/**
+	 * Constructor de la clase VentanaAreas.
+	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 */
 	public VentanaAreas() {
 		super("Gestor de áreas");
 		inicializarComponentes();
 	}
 
+	/**
+	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
+	 * Configura el layout, crea e inicializa las etiquetas y los botones, y los añade al contenedor principal.
+	 */
 	private void inicializarComponentes() {
 		getContentPane().setLayout(null);
 		
+		// Creación e inicialización de los componentes de la interfaz de usuario
+
 		lblAreas = new JLabel("Áreas");
 		lblAreas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblAreas.setBounds(10, 10, 88, 32);
@@ -75,6 +88,5 @@ public class VentanaAreas extends JFrame {
 		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEliminar.setBounds(125, 153, 116, 20);
 		getContentPane().add(lblEliminar);
-		
 	}
 }
