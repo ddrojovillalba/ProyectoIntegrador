@@ -61,9 +61,7 @@ Este archivo `README.md` proporciona una descripción detallada de todo lo relac
 La base de datos de nuestro proyecto está diseñada para administrar los Proyectos Integradores creados por los alumnos de los ciclos de DAM, ASIR, DAW y Animaciones 3D y Videojuegos. Esta base de datos está estructurada en tres tablas principales: `proyecto_integrado`, `ciclo` y `alumno`.
 
 - **proyecto_integrado**: Almacena la información de los proyectos, incluyendo su identificador único, nombre, URL de GitHub, nota obtenida, año, curso, grupo y el ciclo al que pertenece.
-
 - **ciclo**: Contiene información sobre los distintos ciclos formativos, con su identificador único, nombre y descripción.
-
 - **alumno**: Guarda los datos de los alumnos, como su identificador único, número de expediente y nombre y apellidos.
 
 ## Diagrama Entidad/Relación
