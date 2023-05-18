@@ -46,4 +46,4 @@ Este proyecto está licenciado bajo los términos de la licencia MIT. Consulta e
 
 Si tienes alguna pregunta o sugerencia sobre el Proyecto Integrador, no dudes en ponerte en contacto con nosotros.
 
-**Autor:** Mario, Angi y David
+**Autores:** Mario, Angi y David
