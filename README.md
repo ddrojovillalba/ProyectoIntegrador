@@ -1,5 +1,4 @@
 # ProyectoIntegrador!
-![Captura de pantalla 2023-05-18 095801](https://github.com/ddrojovillalba/ProyectoIntegrador/assets/118363138/f4b8b876-a90f-49e8-8128-2de4b4cb6ba8)
 ![图片_20230423231710](https://user-images.githubusercontent.com/118363138/233866750-26a70cee-e086-47ff-8bd0-7049575865c8.png)
 ![图片_20230423231705](https://user-images.githubusercontent.com/118363138/233866751-b9a01fc4-9d59-441f-9fa3-001c75df4452.png)
 
