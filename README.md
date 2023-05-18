@@ -24,7 +24,7 @@ El repositorio se divide en tres carpetas principales:
 Para ejecutar el Proyecto Integrador, sigue estos pasos:
 
 1. Clona este repositorio en tu máquina local.
-2. Asegúrate de tener instalado un entorno de desarrollo compatible con Java, como Eclipse o IntelliJ IDEA, así como una base de datos compatible.
+2. Comprueba tener instalado un entorno de desarrollo compatible con Java, como Eclipse o IntelliJ IDEA, así como una base de datos compatible.
 3. Importa el proyecto en tu entorno de desarrollo de elección.
 4. Ejecuta los scripts de la base de datos para crear la base de datos y las tablas necesarias.
 5. Configura la conexión a la base de datos en la clase Modelo.
