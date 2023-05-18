@@ -1,6 +1,7 @@
 Tabla de modelo E/R
 ![Captura de pantalla 2023-05-18 095801](https://github.com/ddrojovillalba/ProyectoIntegrador/assets/118363138/f4b8b876-a90f-49e8-8128-2de4b4cb6ba8)
-![Captura de pantalla 2023-05-18 095801](https://github.com/ddrojovillalba/ProyectoIntegrador/assets/118363138/803b94d3-2cef-4462-bd25-40118d00d48e)
+
+![Captura de pantalla 2023-05-18 103329](https://github.com/ddrojovillalba/ProyectoIntegrador/assets/118363138/d0c3bcb6-249d-434c-bf07-a7ddf25becbf)
 
 Normalización
 [TRABAJO (1).pdf](https://github.com/ddrojovillalba/ProyectoIntegrador/files/11331213/TRABAJO.1.pdf)
