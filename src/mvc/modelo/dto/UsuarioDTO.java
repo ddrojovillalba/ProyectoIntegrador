@@ -10,11 +10,18 @@ import mvc.vistas.VentanaLogin;
 import mvc.modelo.conexion.*;
 import mvc.modelo.vo.UsuarioVO;
 
+/**
+ * @author Mario
+ *
+ */
 public class UsuarioDTO {
 	
 	
 	private Coordinador miCoordinador;
 
+	/** Método para tener una instancia del coordinador
+	 * @param miCoordinador
+	 */
 	public void setCoordinador(Coordinador miCoordinador) {
 		
 		this.miCoordinador=miCoordinador;
@@ -24,6 +31,10 @@ public class UsuarioDTO {
 	
 	// Método que comprueba las credenciales del usuario intentando acceder
 
+	/** Método que comprueba las credenciales del usuario intentando acceder
+	 * @param usuarioVO
+	 * @return respuesta
+	 */
 	public String comprobarUsuario(UsuarioVO usuarioVO) {
 		
 		String respuesta="";
@@ -95,6 +106,10 @@ public class UsuarioDTO {
 	
 	// Metodo que devuelve un ArryList con los usuarios que coinciden con la búsueda
 	
+	/** Metodo que devuelve un ArryList con los usuarios que coinciden con la búsueda
+	 * @param busqueda
+	 * @return resultado
+	 */
 	public ArrayList<UsuarioVO> miListaUsuariosFiltada (String busqueda){
 		
 		UsuarioVO usuario;
@@ -162,6 +177,10 @@ public class UsuarioDTO {
 
 
 
+	/** Método para mostrar los datos de un usuario
+	 * @param userID
+	 * @return usuario
+	 */
 	public UsuarioVO mostrarDetalle(int userID) {
 		
 		UsuarioVO usuario=null;
