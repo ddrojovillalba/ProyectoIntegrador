@@ -20,6 +20,9 @@ public class ProyectoDTO {
 
 	private Coordinador miCoordinador;
 
+	/** Método para tener una instancia del coordinador
+	 * @param miCoordinador
+	 */
 	public void setCoordinador(Coordinador miCoordinador) {
 
 		this.miCoordinador = miCoordinador;
