@@ -44,7 +44,7 @@ public class IntegrantesDTO {
 		ResultSet resultadoConsulta = null;
 		ConexionDB conexion = new ConexionDB();
 		String consulta;
-		consulta = "SELECT users.user_id, name, expediente FROM users INNER JOIN integrantes ON (users.user_id = integrantes.user_id) WHERE integrantes.proyecto_id= ?"; // Devuelveme
+		consulta = "SELECT users.user_id, nombre, expediente FROM users INNER JOIN integrantes ON (users.user_id = integrantes.user_id) WHERE integrantes.proyecto_id= ?"; // Devuelveme
 																																											// todos
 																																											// los
 																																											// usuarios
@@ -60,8 +60,8 @@ public class IntegrantesDTO {
 				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
 				System.out.println(resultadoConsulta.getString("user_id"));
-				usuario.setNombre(resultadoConsulta.getString("name"));
-				System.out.println(resultadoConsulta.getString("name"));
+				usuario.setNombre(resultadoConsulta.getString("nombre"));
+				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
 				System.out.println(resultadoConsulta.getString(3));
 				resultado.add(usuario);

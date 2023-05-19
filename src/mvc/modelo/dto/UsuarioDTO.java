@@ -15,239 +15,244 @@ import mvc.modelo.vo.UsuarioVO;
  *
  */
 public class UsuarioDTO {
-	
-	
+
 	private Coordinador miCoordinador;
 
-	/** Método para tener una instancia del coordinador
+	/**
+	 * Método para tener una instancia del coordinador
+	 * 
 	 * @param miCoordinador
 	 */
 	public void setCoordinador(Coordinador miCoordinador) {
-		
-		this.miCoordinador=miCoordinador;
-		
+
+		this.miCoordinador = miCoordinador;
+
 	}
-	
-	
+
 	// Método que comprueba las credenciales del usuario intentando acceder
 
-	/** Método que comprueba las credenciales del usuario intentando acceder
+	/**
+	 * Método que comprueba las credenciales del usuario intentando acceder
+	 * 
 	 * @param usuarioVO
 	 * @return respuesta
 	 */
 	public String comprobarUsuario(UsuarioVO usuarioVO) {
-		
-		String respuesta="";
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		ResultSet resultadoConsulta=null;
-		String consulta="SELECT user_id, name, es_profesor FROM users WHERE nick_name = ? AND password = ?; ";
-		
+
+		String respuesta = "";
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+		ResultSet resultadoConsulta = null;
+		String consulta = "SELECT user_id, nombre, es_profesor FROM users WHERE nick_name = ? AND password = ?; ";
+
 		ConexionDB conexion = new ConexionDB();
-		
-		
+
 		if (validarCampos(usuarioVO)) {
-			
+
 			try {
-				connection=conexion.establecerConexion();
-				prepStatement=connection.prepareStatement(consulta);
+				connection = conexion.establecerConexion();
+				prepStatement = connection.prepareStatement(consulta);
 				prepStatement.setString(1, usuarioVO.getNick_name());
 				prepStatement.setString(2, usuarioVO.getPassword());
-				resultadoConsulta=prepStatement.executeQuery();
+				resultadoConsulta = prepStatement.executeQuery();
 				if (resultadoConsulta.next()) {
-					
-					if (resultadoConsulta.getString("es_profesor").equals("1")) {   // Almacenamos si el usuario loggeado es o no profesor
-						Coordinador.esProfesor=true;					// para variar las vistas de las ventanas en función de ello
-					}else if (resultadoConsulta.getString("es_profesor").equals("0")){
-						Coordinador.esProfesor=false;
+
+					if (resultadoConsulta.getString("es_profesor").equals("1")) { // Almacenamos si el usuario loggeado
+																					// es o no profesor
+						Coordinador.esProfesor = true; // para variar las vistas de las ventanas en función de ello
+					} else if (resultadoConsulta.getString("es_profesor").equals("0")) {
+						Coordinador.esProfesor = false;
 					}
-					
-					Coordinador.usuarioLoggeado=(int) resultadoConsulta.getInt("user_id"); // Almacenamos el user_id del usuario Loggeado
-					
-					respuesta="Logged";
-					
-				}else {
-					
+
+					Coordinador.usuarioLoggeado = (int) resultadoConsulta.getInt("user_id"); // Almacenamos el user_id
+																								// del usuario Loggeado
+
+					respuesta = "Logged";
+
+				} else {
+
 					System.out.println("Los datos no coinciden");
-					respuesta="Credenciales";
+					respuesta = "Credenciales";
 				}
-				
+
 			} catch (SQLException e) {
-				
+
 				e.printStackTrace();
 				respuesta = "Error";
-				
+
 			} finally {
-				
+
 				try {
-					
+
 					resultadoConsulta.close();
 					prepStatement.close();
 					conexion.desconectar();
-					
+
 				} catch (SQLException e) {
 
 					e.printStackTrace();
 				}
-				
+
 			}
-						
+
+		} else {
+			respuesta = "faltan campos";
 		}
-		else {
-			respuesta="faltan campos";
-		}
-	
+
 		return respuesta;
-		
+
 	}
 
-
-	
-	
 	// Metodo que devuelve un ArryList con los usuarios que coinciden con la búsueda
-	
-	/** Metodo que devuelve un ArryList con los usuarios que coinciden con la búsueda
+
+	/**
+	 * Metodo que devuelve un ArryList con los usuarios que coinciden con la búsueda
+	 * 
 	 * @param busqueda
 	 * @return resultado
 	 */
-	public ArrayList<UsuarioVO> miListaUsuariosFiltada (String busqueda){
-		
+	public ArrayList<UsuarioVO> miListaUsuariosFiltada(String busqueda) {
+
 		UsuarioVO usuario;
-		ArrayList<UsuarioVO>resultado = new ArrayList<>() ;
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		ResultSet resultadoConsulta=null;
+		ArrayList<UsuarioVO> resultado = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+		ResultSet resultadoConsulta = null;
 		ConexionDB conexion = new ConexionDB();
 		String consulta;
-		if (busqueda.equals("")){
-			consulta="SELECT user_id, name, expediente FROM users";  // Devuelveme todos los usuarios
-		}else {
-			consulta="SELECT user_id, name, expediente FROM users WHERE name REGEXP ? OR expediente REGEXP ? ORDER BY name"; // Devuelveme los usuarios buscados
+		if (busqueda.equals("")) {
+			consulta = "SELECT user_id, nombre, expediente FROM users"; // Devuelveme todos los usuarios
+		} else {
+			consulta = "SELECT user_id, nombre, expediente FROM users WHERE nombre REGEXP ? OR expediente REGEXP ? ORDER BY nombre"; // Devuelveme
+																																// los
+																																// usuarios
+																																// buscados
 		}
-		connection=conexion.establecerConexion();
-		
-		
-		
-		System.out.println(busqueda+", "+ consulta);
-		
+		connection = conexion.establecerConexion();
+
+		System.out.println(busqueda + ", " + consulta);
+
 		try {
-			prepStatement=connection.prepareStatement(consulta);
-			if (!busqueda.equals("")){
+			prepStatement = connection.prepareStatement(consulta);
+			if (!busqueda.equals("")) {
 				prepStatement.setString(1, busqueda + "");
 				prepStatement.setString(2, busqueda + "");
 			}
 			System.out.println(consulta + "despues del setString");
-			resultadoConsulta=prepStatement.executeQuery();
-			
+			resultadoConsulta = prepStatement.executeQuery();
+
 			while (resultadoConsulta.next()) {
-				
-				usuario=new UsuarioVO();
+
+				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
 				System.out.println(resultadoConsulta.getString("user_id"));
-				usuario.setNombre(resultadoConsulta.getString("name"));
-				System.out.println(resultadoConsulta.getString("name"));
+				usuario.setNombre(resultadoConsulta.getString("nombre"));
+				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
 				System.out.println(resultadoConsulta.getString(3));
 				resultado.add(usuario);
-				
+
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-			
+
 		} finally {
-			
+
 			try {
-				
+
 				resultadoConsulta.close();
 				prepStatement.close();
 				conexion.desconectar();
-				
+
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
-			
+
 		}
-		
-		return resultado;	
-		
+
+		return resultado;
+
 	}
 
-
-
-	/** Método para mostrar los datos de un usuario
+	/**
+	 * Método para mostrar los datos de un usuario
+	 * 
 	 * @param userID
 	 * @return usuario
 	 */
 	public UsuarioVO mostrarDetalle(int userID) {
-		
-		UsuarioVO usuario=null;
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		ResultSet resultadoConsulta=null;
+
+		UsuarioVO usuario = null;
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+		ResultSet resultadoConsulta = null;
 		ConexionDB conexion = new ConexionDB();
-		String consulta="SELECT user_id, name, expediente, password, nick_name, es_profesor FROM users WHERE user_id LIKE ? ";
-		connection=conexion.establecerConexion();
-		
-			
+		String consulta = "SELECT user_id, nombre, expediente, password, nick_name, es_profesor FROM users WHERE user_id LIKE ? ";
+		connection = conexion.establecerConexion();
+
 		try {
-			prepStatement=connection.prepareStatement(consulta);
+			prepStatement = connection.prepareStatement(consulta);
 			prepStatement.setInt(1, userID);
-			resultadoConsulta=prepStatement.executeQuery();
-			
+			resultadoConsulta = prepStatement.executeQuery();
+
 			while (resultadoConsulta.next()) {
-				
-				usuario=new UsuarioVO();
+
+				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
 				System.out.println(resultadoConsulta.getString("user_id"));
-				usuario.setNombre(resultadoConsulta.getString("name"));
-				System.out.println(resultadoConsulta.getString("name"));
+				usuario.setNombre(resultadoConsulta.getString("nombre"));
+				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
 				usuario.setNick_name(resultadoConsulta.getString("nick_name"));
 				usuario.setPassword(resultadoConsulta.getString("password"));
-				usuario.setIs_teacher(resultadoConsulta.getString("es_profesor"));					
-						
+				usuario.setIs_teacher(resultadoConsulta.getString("es_profesor"));
+
 			}
-					
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
-			
-		}finally {
-			
+
+		} finally {
+
 			try {
-				
+
 				resultadoConsulta.close();
 				prepStatement.close();
 				conexion.desconectar();
-				
+
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		return usuario;
 	}
 
-
+	/**
+	 * Método que actualiza los datos del usuario
+	 * 
+	 * @param usuario
+	 * @return resultado
+	 */
 	public String actualizarUsuario(UsuarioVO usuario) {
-		
+
 		String resultado = "";
 		System.out.println("Conectado para actualizar");
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+
 		ConexionDB conexion = new ConexionDB();
-		String consulta="UPDATE users SET name = ?, expediente=?, password=?, nick_name=?, es_profesor=? WHERE user_id = ?";
-		connection=conexion.establecerConexion();
-		
-			
+		String consulta = "UPDATE users SET nombre = ?, expediente=?, password=?, nick_name=?, es_profesor=? WHERE user_id = ?";
+		connection = conexion.establecerConexion();
+
 		try {
-			prepStatement=connection.prepareStatement(consulta);
+			prepStatement = connection.prepareStatement(consulta);
 			prepStatement.setString(1, usuario.getNombre());
 			prepStatement.setString(2, usuario.getExpediente());
 			prepStatement.setString(3, usuario.getPassword());
@@ -255,209 +260,205 @@ public class UsuarioDTO {
 			prepStatement.setBoolean(5, usuario.getIs_teacher());
 			prepStatement.setInt(6, usuario.getUser_id());
 			prepStatement.executeUpdate();
-		
-			resultado="OK";		
-	
-		}catch (Exception e) {
-			
+
+			resultado = "OK";
+
+		} catch (Exception e) {
+
 			e.printStackTrace();
-			resultado="Error";
-			
-		}finally {
-			
+			resultado = "Error";
+
+		} finally {
+
 			try {
-				
+
 				prepStatement.close();
 				conexion.desconectar();
-				
+
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		return resultado;
 	}
 
-
+	/**
+	 * Método para registrar a un nuevo usuario
+	 * 
+	 * @param usuario
+	 * @return resultado
+	 */
 	public String registrarUsuario(UsuarioVO usuario) {
-		
+
 		String resultado = "";
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+
 		ConexionDB conexion = new ConexionDB();
-		String consulta="INSERT INTO users (name, expediente, password, nick_name, es_profesor) VALUES (?, ?, ?, ?, ?)";
-		connection=conexion.establecerConexion();
-		
-			
+		String consulta = "INSERT INTO users (nombre, expediente, password, nick_name, es_profesor) VALUES (?, ?, ?, ?, ?)";
+		connection = conexion.establecerConexion();
+
 		try {
-			prepStatement=connection.prepareStatement(consulta);
+			prepStatement = connection.prepareStatement(consulta);
 			prepStatement.setString(1, usuario.getNombre());
 			prepStatement.setString(2, usuario.getExpediente());
 			prepStatement.setString(3, usuario.getPassword());
 			prepStatement.setString(4, usuario.getNick_name());
 			prepStatement.setBoolean(5, usuario.getIs_teacher());
 			prepStatement.executeUpdate();
-		
-			resultado="OK";
-		
-				
-	
-		}catch (Exception e) {
-			
+
+			resultado = "OK";
+
+		} catch (Exception e) {
+
 			e.printStackTrace();
-			resultado="Error";
-			
-		}finally {
-			
+			resultado = "Error";
+
+		} finally {
+
 			try {
-				
+
 				prepStatement.close();
 				conexion.desconectar();
-				
+
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		System.out.println(resultado);
 		return resultado;
 	}
 
-
+	/**
+	 * Método para borrar un usuario
+	 * 
+	 * @param usuario
+	 * @return resultado
+	 */
 	public String borrarUsuario(UsuarioVO usuario) {
-		
+
 		String resultado = "";
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+
 		ConexionDB conexion = new ConexionDB();
-		String consulta="DELETE FROM users WHERE user_id = ?";
-		connection=conexion.establecerConexion();
-		
-			
+		String consulta = "DELETE FROM users WHERE user_id = ?";
+		connection = conexion.establecerConexion();
+
 		try {
-			prepStatement=connection.prepareStatement(consulta);
+			prepStatement = connection.prepareStatement(consulta);
 			prepStatement.setInt(1, usuario.getUser_id());
 			prepStatement.executeUpdate();
-		
-			resultado="OK";
-		
-				
-	
-		}catch (Exception e) {
+
+			resultado = "OK";
+
+		} catch (Exception e) {
 			e.printStackTrace();
-			resultado="Error";
+			resultado = "Error";
 		} finally {
-			
+
 			try {
-				
+
 				prepStatement.close();
 				conexion.desconectar();
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
-		
+
 		System.out.println(resultado);
 		return resultado;
-		
-		
+
 	}
 
+	/**
+	 * Método que sirve para devolver los usuarios buscados
+	 * 
+	 * @return listaUsuarios
+	 */
+	public ArrayList<UsuarioVO> cargarAlumnos() {
 
-	public ArrayList<UsuarioVO> cargarAlumnos (){
-		
 		UsuarioVO usuario;
-		ArrayList<UsuarioVO>listaUsuarios = new ArrayList<>() ;
-		Connection connection=null;
-		PreparedStatement prepStatement=null;
-		ResultSet resultadoConsulta=null;
+		ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement prepStatement = null;
+		ResultSet resultadoConsulta = null;
 		ConexionDB conexion = new ConexionDB();
 		String consulta;
-		
-		consulta="SELECT user_id, name, expediente FROM users WHERE es_profesor = 0"; // Devuelveme los usuarios buscados
-		
-		connection=conexion.establecerConexion();
-		
-		
-		
-			
+
+		consulta = "SELECT user_id, nombre, expediente FROM users WHERE es_profesor = 0"; // Devuelveme los usuarios
+																						// buscados
+
+		connection = conexion.establecerConexion();
+
 		try {
-			prepStatement=connection.prepareStatement(consulta);
-			resultadoConsulta=prepStatement.executeQuery();
-			
+			prepStatement = connection.prepareStatement(consulta);
+			resultadoConsulta = prepStatement.executeQuery();
+
 			while (resultadoConsulta.next()) {
-				
-				usuario=new UsuarioVO();
+
+				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
 				System.out.println(resultadoConsulta.getString("user_id"));
-				usuario.setNombre(resultadoConsulta.getString("name"));
-				System.out.println(resultadoConsulta.getString("name"));
+				usuario.setNombre(resultadoConsulta.getString("nombre"));
+				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
 				System.out.println(resultadoConsulta.getString(3));
 				listaUsuarios.add(usuario);
-				
+
 			}
-			
-			
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			
+
 			try {
 				resultadoConsulta.close();
 				prepStatement.close();
 				conexion.desconectar();
-				
+
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		}
-		
-		return listaUsuarios;
-		
-		
-	}
-	
-	
-	// --------------------------------- Métodos auxiliares ---------
-	
-	
 
+		}
+
+		return listaUsuarios;
+
+	}
+
+	// --------------------------------- Métodos auxiliares ---------
+
+	/**
+	 * Método para verificar que todos los campos están rellenados y no están vacios
+	 * 
+	 * @param usuario
+	 * @return validPass && validUser
+	 */
 	private boolean validarCampos(UsuarioVO usuario) {
-		
-		boolean validUser=true;
-		boolean validPass=true;
-		
-		
-		if (usuario.getNick_name().isEmpty()){
-			validUser=false;
+
+		boolean validUser = true;
+		boolean validPass = true;
+
+		if (usuario.getNick_name().isEmpty()) {
+			validUser = false;
 		}
-		if (usuario.getPassword().isEmpty()){
-			validPass=false;
+		if (usuario.getPassword().isEmpty()) {
+			validPass = false;
 		}
-		
+
 		return validPass && validUser;
 	}
-		
+
 }
-
-
-
-	
-	
-	
-
-

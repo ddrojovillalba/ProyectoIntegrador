@@ -7,77 +7,112 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 
-public class Pestaña extends JPanel{
+/**
+ * @author Mario
+ *
+ */
+public class Pestaña extends JPanel {
 
-	
 	private JLabel lblConsulta;
 	private JLabel lblEditar;
 	private JLabel lblAlta;
-	
+
 	private JButton btnConsulta;
 	private JButton btnEditar;
 	private JButton btnAlta;
-	
-	
+
+	/**
+	 * Constructor de la clase
+	 * 
+	 * @param nombrePestaña
+	 */
 	public Pestaña(String nombrePestaña) {
-		
+
 		setBackground(SystemColor.textHighlight);
 		setLayout(null);
 		inicializarComponentes(nombrePestaña);
-		}
+	}
 
-		private void inicializarComponentes(String nombrePestaña) {
-		
+	/**
+	 * Método para crear/añadir los elementos necesarios a la vista
+	 * 
+	 * @param nombrePestaña
+	 */
+	private void inicializarComponentes(String nombrePestaña) {
+
 		lblConsulta = new JLabel("CONSULTAR/EDITAR " + nombrePestaña);
 		lblConsulta.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblConsulta.setFocusTraversalPolicyProvider(true);
 		lblConsulta.setBounds(60, 40, 220, 80);
 		this.add(lblConsulta);
-		
-		
+
 		btnConsulta = new JButton("CONSULTAR/EDITAR");
 		btnConsulta.setBounds(380, 55, 200, 50);
 		this.add(btnConsulta);
-		
+
 		lblAlta = new JLabel("ALTA");
 		lblAlta.setHorizontalAlignment(SwingConstants.TRAILING);
 		lblAlta.setFocusTraversalPolicyProvider(true);
 		lblAlta.setBounds(60, 140, 220, 80);
 		add(lblAlta);
-		
+
 		btnAlta = new JButton("REGISTRAR");
 		btnAlta.setBounds(380, 155, 200, 50);
 		add(btnAlta);
 
-		
-		
-		
-		
 	}
 
-		public JLabel getLblConsulta() {
-			return lblConsulta;
-		}
+	/**
+	 * getter del LblConsulta
+	 * 
+	 * @return lblconsulta
+	 */
+	public JLabel getLblConsulta() {
+		return lblConsulta;
+	}
 
-		public JLabel getLblDarDeAlta() {
-			return lblAlta;
-		}
+	/**
+	 * getter del LblConsulta
+	 * 
+	 * @return lblConsulta
+	 */
+	public JLabel getLblDarDeAlta() {
+		return lblAlta;
+	}
 
+	/**
+	 * getter del LblEditar
+	 * 
+	 * @return lblEditar
+	 */
+	public JLabel getLblEditar() {
+		return lblEditar;
+	}
 
+	/**
+	 * getter del BtnConsultar
+	 * 
+	 * @return btnconsultar
+	 */
+	public JButton getBtnConsulta() {
+		return btnConsulta;
+	}
 
-		public JLabel getLblEditar() {
-			return lblEditar;
-		}
+	/**
+	 * getter del BtnAlta
+	 * 
+	 * @return btnAlta
+	 */
+	public JButton getBtnAlta() {
+		return btnAlta;
+	}
 
-		public JButton getBtnConsulta() {
-			return btnConsulta;
-		}
-
-		public JButton getBtnAlta() {
-			return btnAlta;
-		}
-
-		public JButton getBtnEditar() {
-			return btnEditar;
-		}
+	/**
+	 * getter del BtnEditar
+	 * 
+	 * @return btnEditar
+	 */
+	public JButton getBtnEditar() {
+		return btnEditar;
+	}
 }
