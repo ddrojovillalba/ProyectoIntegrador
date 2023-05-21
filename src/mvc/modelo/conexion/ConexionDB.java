@@ -54,6 +54,12 @@ public class ConexionDB {
 
 	}
 	
+	/** Constructor para los Test 
+	 * @param driver
+	 * @param usuario
+	 * @throws ClassNotFoundException
+	 * @throws SQLException
+	 */
 	public ConexionDB(String driver, String usuario) throws ClassNotFoundException, SQLException {
 		
 		try {
