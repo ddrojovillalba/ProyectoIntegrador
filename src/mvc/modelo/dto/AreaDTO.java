@@ -19,6 +19,16 @@ public class AreaDTO {
 	private Coordinador miCoordinador;
 
 	/**
+	 * Método para tener una instancia del coordinador
+	 * 
+	 * @param miCoordinador
+	 */
+	public void setCoordinador(Coordinador miCoordinador) {
+		this.miCoordinador = miCoordinador;
+
+	}
+
+	/**
 	 * Método en el cual se rellena el comboBox de Areas
 	 * 
 	 * @return
@@ -62,16 +72,6 @@ public class AreaDTO {
 		}
 
 		return listaAreas;
-	}
-
-	/**
-	 * Método para tener una instancia del coordinador
-	 * 
-	 * @param miCoordinador
-	 */
-	public void setCoordinador(Coordinador miCoordinador) {
-		this.miCoordinador = miCoordinador;
-
 	}
 
 	/**

@@ -11,7 +11,6 @@ public class ProyectoVO {
 	private String url;
 	private double nota;
 	private String year;
-	private String año;
 	private String curso;
 	private String grupo;
 	private int area;
@@ -106,24 +105,6 @@ public class ProyectoVO {
 	 */
 	public void setYear(String year) {
 		this.year = year;
-	}
-
-	/**
-	 * getter de Año
-	 * 
-	 * @return año
-	 */
-	public String getAño() {
-		return año;
-	}
-
-	/**
-	 * setter de Año
-	 * 
-	 * @param año
-	 */
-	public void setAño(String año) {
-		this.año = año;
 	}
 
 	/**

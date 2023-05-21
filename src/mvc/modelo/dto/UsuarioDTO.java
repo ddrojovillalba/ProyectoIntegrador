@@ -17,6 +17,21 @@ import mvc.modelo.vo.UsuarioVO;
 public class UsuarioDTO {
 
 	private Coordinador miCoordinador;
+	private Connection connection;
+	private ConexionDB conexionUsuarioDTO = new ConexionDB();
+
+	public UsuarioDTO() {
+		connection = conexionUsuarioDTO.establecerConexion();
+	}
+
+	/**
+	 * Constructor para los test
+	 * 
+	 * @param conn
+	 */
+	public UsuarioDTO(Connection conn) {
+		connection = conn;
+	}
 
 	/**
 	 * Método para tener una instancia del coordinador
@@ -27,6 +42,15 @@ public class UsuarioDTO {
 
 		this.miCoordinador = miCoordinador;
 
+	}
+
+	/**
+	 * getter de la conexion de la clase a la BD
+	 * 
+	 * @return connection
+	 */
+	public Connection getConnection() {
+		return connection;
 	}
 
 	// Método que comprueba las credenciales del usuario intentando acceder
@@ -40,17 +64,13 @@ public class UsuarioDTO {
 	public String comprobarUsuario(UsuarioVO usuarioVO) {
 
 		String respuesta = "";
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
 		String consulta = "SELECT user_id, nombre, es_profesor FROM users WHERE nick_name = ? AND password = ?; ";
 
-		ConexionDB conexion = new ConexionDB();
-
 		if (validarCampos(usuarioVO)) {
 
 			try {
-				connection = conexion.establecerConexion();
 				prepStatement = connection.prepareStatement(consulta);
 				prepStatement.setString(1, usuarioVO.getNick_name());
 				prepStatement.setString(2, usuarioVO.getPassword());
@@ -86,7 +106,6 @@ public class UsuarioDTO {
 
 					resultadoConsulta.close();
 					prepStatement.close();
-					conexion.desconectar();
 
 				} catch (SQLException e) {
 
@@ -115,20 +134,17 @@ public class UsuarioDTO {
 
 		UsuarioVO usuario;
 		ArrayList<UsuarioVO> resultado = new ArrayList<>();
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta;
 		if (busqueda.equals("")) {
 			consulta = "SELECT user_id, nombre, expediente FROM users"; // Devuelveme todos los usuarios
 		} else {
 			consulta = "SELECT user_id, nombre, expediente FROM users WHERE nombre REGEXP ? OR expediente REGEXP ? ORDER BY nombre"; // Devuelveme
-																																// los
-																																// usuarios
-																																// buscados
+			// los
+			// usuarios
+			// buscados
 		}
-		connection = conexion.establecerConexion();
 
 		System.out.println(busqueda + ", " + consulta);
 
@@ -164,7 +180,6 @@ public class UsuarioDTO {
 
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 
@@ -186,12 +201,9 @@ public class UsuarioDTO {
 	public UsuarioVO mostrarDetalle(int userID) {
 
 		UsuarioVO usuario = null;
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "SELECT user_id, nombre, expediente, password, nick_name, es_profesor FROM users WHERE user_id LIKE ? ";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -222,7 +234,6 @@ public class UsuarioDTO {
 
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 
@@ -244,12 +255,9 @@ public class UsuarioDTO {
 
 		String resultado = "";
 		System.out.println("Conectado para actualizar");
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "UPDATE users SET nombre = ?, expediente=?, password=?, nick_name=?, es_profesor=? WHERE user_id = ?";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -273,7 +281,6 @@ public class UsuarioDTO {
 			try {
 
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 
@@ -294,12 +301,9 @@ public class UsuarioDTO {
 	public String registrarUsuario(UsuarioVO usuario) {
 
 		String resultado = "";
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "INSERT INTO users (nombre, expediente, password, nick_name, es_profesor) VALUES (?, ?, ?, ?, ?)";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -322,7 +326,6 @@ public class UsuarioDTO {
 			try {
 
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 
@@ -344,12 +347,9 @@ public class UsuarioDTO {
 	public String borrarUsuario(UsuarioVO usuario) {
 
 		String resultado = "";
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "DELETE FROM users WHERE user_id = ?";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -366,7 +366,6 @@ public class UsuarioDTO {
 			try {
 
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -389,16 +388,12 @@ public class UsuarioDTO {
 
 		UsuarioVO usuario;
 		ArrayList<UsuarioVO> listaUsuarios = new ArrayList<>();
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta;
 
 		consulta = "SELECT user_id, nombre, expediente FROM users WHERE es_profesor = 0"; // Devuelveme los usuarios
-																						// buscados
-
-		connection = conexion.establecerConexion();
+																							// buscados
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -425,7 +420,6 @@ public class UsuarioDTO {
 			try {
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -446,7 +440,7 @@ public class UsuarioDTO {
 	 * @param usuario
 	 * @return validPass && validUser
 	 */
-	private boolean validarCampos(UsuarioVO usuario) {
+	public boolean validarCampos(UsuarioVO usuario) {
 
 		boolean validUser = true;
 		boolean validPass = true;

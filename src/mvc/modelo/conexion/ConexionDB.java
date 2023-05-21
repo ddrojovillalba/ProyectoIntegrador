@@ -12,6 +12,7 @@ public class ConexionDB {
 	private String usuario = "root";
 	private String password = "rootroot";
 	private String url = "jdbc:mysql://localhost/" + nombreDB;
+	private String driver ="com.mysql.cj.jdbc.Driver";
 
 	Connection conn = null;
 
@@ -26,7 +27,7 @@ public class ConexionDB {
 
 			// Buscamos el Driver de la BD
 
-			Class.forName("com.mysql.cj.jdbc.Driver");
+			Class.forName(driver);
 
 			// Obtenemos la conexion
 
@@ -48,6 +49,41 @@ public class ConexionDB {
 
 			System.out.println("Error de Driver JDBC. " + e.getMessage());
 			e.printStackTrace();
+
+		}
+
+	}
+	
+	public ConexionDB(String driver, String usuario) throws ClassNotFoundException, SQLException {
+		
+		try {
+
+			// Buscamos el Driver de la BD
+
+			Class.forName(driver);
+
+			// Obtenemos la conexion
+
+			conn = DriverManager.getConnection(url, usuario, password);
+
+			if (conn != null) {
+
+				System.out.println("Conexion establecida a " + nombreDB);
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch
+
+			System.out.println("Error de Conexion. " + e.getMessage());
+			e.printStackTrace();
+			throw e;
+
+		} catch (ClassNotFoundException e) {
+
+			System.out.println("Error de Driver JDBC. " + e.getMessage());
+			e.printStackTrace();
+			throw e;
 
 		}
 

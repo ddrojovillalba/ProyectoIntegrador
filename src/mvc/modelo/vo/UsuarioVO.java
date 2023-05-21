@@ -104,17 +104,6 @@ public class UsuarioVO {
 	}
 
 	/**
-	 * getter de Is_teacher
-	 * 
-	 * @return is_teacher
-	 */
-	public boolean getIs_teacher() {
-
-		return is_teacher;
-
-	}
-
-	/**
 	 * setter de Is_teacher
 	 * 
 	 * @param valor
@@ -129,6 +118,17 @@ public class UsuarioVO {
 			this.is_teacher = true;
 
 		}
+
+	}
+
+	/**
+	 * getter de Is_teacher
+	 * 
+	 * @return is_teacher
+	 */
+	public boolean getIs_teacher() {
+
+		return is_teacher;
 
 	}
 

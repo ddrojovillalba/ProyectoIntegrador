@@ -329,39 +329,6 @@ public class DetalleAlumno extends JDialog {
 
 	}
 
-	// ------------------------ Método que coge los datos del formulario, los
-	// encapsula en un objeto UsuarioVO y nos devuelve ese objeto -------------
-
-	/**
-	 * Método que coge los datos del formulario, los encapsula en un objeto
-	 * UsuarioVO y nos devuelve ese objeto
-	 * 
-	 * @return usuario
-	 */
-	public UsuarioVO capturarDatosUsuario() {
-
-		UsuarioVO usuario = new UsuarioVO();
-
-		// -------------------- Si el campo ID está vació, es porque estamos registrando
-		// un nuevo usuario, y lo obviamos -----------------------------
-
-		if (!textId.getText().equals("")) {
-			usuario.setUser_id(Integer.parseInt(textId.getText()));
-		}
-		usuario.setNombre(txtNombre.getText());
-		usuario.setExpediente(txtExpediente.getText());
-		usuario.setPassword(txtPassword.getText());
-		usuario.setNick_name(txtNick_user.getText());
-
-		if (rdbtnProfesor.isSelected()) {
-			usuario.setIs_teacher("1");
-		} else {
-			usuario.setIs_teacher("0");
-		}
-
-		return usuario;
-	}
-
 	// -------------------------------------------- Método que recibe un UsuaroVo
 	// para mostrárnoslo en el formulario ---------------------------------
 
@@ -399,9 +366,6 @@ public class DetalleAlumno extends JDialog {
 		}
 	}
 
-	// -------------------------------- Método que limpia el formulario
-	// ----------------------------
-
 	/**
 	 * Método que limpia el formulario
 	 */
@@ -416,6 +380,42 @@ public class DetalleAlumno extends JDialog {
 		rdbtnAlumno.setSelected(false);
 		rdbtnProfesor.setSelected(false);
 	}
+
+	// ------------------------ Método que coge los datos del formulario, los
+	// encapsula en un objeto UsuarioVO y nos devuelve ese objeto -------------
+
+	/**
+	 * Método que coge los datos del formulario, los encapsula en un objeto
+	 * UsuarioVO y nos devuelve ese objeto
+	 * 
+	 * @return usuario
+	 */
+	public UsuarioVO capturarDatosUsuario() {
+
+		UsuarioVO usuario = new UsuarioVO();
+
+		// -------------------- Si el campo ID está vació, es porque estamos registrando
+		// un nuevo usuario, y lo obviamos -----------------------------
+
+		if (!textId.getText().equals("")) {
+			usuario.setUser_id(Integer.parseInt(textId.getText()));
+		}
+		usuario.setNombre(txtNombre.getText());
+		usuario.setExpediente(txtExpediente.getText());
+		usuario.setPassword(txtPassword.getText());
+		usuario.setNick_name(txtNick_user.getText());
+
+		if (rdbtnProfesor.isSelected()) {
+			usuario.setIs_teacher("1");
+		} else {
+			usuario.setIs_teacher("0");
+		}
+
+		return usuario;
+	}
+
+	// -------------------------------- Método que limpia el formulario
+	// ----------------------------
 
 	/**
 	 * Método que comprueba si todos los campos han sido rellenados

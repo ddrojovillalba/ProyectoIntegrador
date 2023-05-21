@@ -17,6 +17,30 @@ import mvc.modelo.vo.UsuarioVO;
 public class IntegrantesDTO {
 
 	private Coordinador miCoordinador;
+	private Connection connection;
+	private ConexionDB conexionIntegrantesDTO = new ConexionDB();
+
+	public IntegrantesDTO() {
+		connection = conexionIntegrantesDTO.establecerConexion();
+	}
+
+	/**
+	 * getter de la conexion de la clase a la BD
+	 * 
+	 * @return connection
+	 */
+	public Connection getConnection() {
+		return connection;
+	}
+
+	/**
+	 * Constructor para los test
+	 * 
+	 * @param conn
+	 */
+	public IntegrantesDTO(Connection conn) {
+		connection = conn;
+	}
 
 	/**
 	 * Método para tener una instancia del coordinador
@@ -39,16 +63,13 @@ public class IntegrantesDTO {
 
 		UsuarioVO usuario;
 		ArrayList<UsuarioVO> resultado = new ArrayList<>();
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta;
 		consulta = "SELECT users.user_id, nombre, expediente FROM users INNER JOIN integrantes ON (users.user_id = integrantes.user_id) WHERE integrantes.proyecto_id= ?"; // Devuelveme
 																																											// todos
 																																											// los
 																																											// usuarios
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -77,7 +98,6 @@ public class IntegrantesDTO {
 
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -90,75 +110,6 @@ public class IntegrantesDTO {
 
 	}
 
-	/*
-	 * public String borrarIntegrantes(int idPR) {
-	 * 
-	 * String resultado = ""; Connection connection=null; PreparedStatement
-	 * prepStatement=null;
-	 * 
-	 * ConexionDB conexion = new ConexionDB(); String
-	 * consulta="DELETE FROM integrantes WHERE proyecto_id = ?";
-	 * connection=conexion.establecerConexion();
-	 * 
-	 * 
-	 * try { prepStatement=connection.prepareStatement(consulta);
-	 * prepStatement.setInt(1, idPR); prepStatement.execute();
-	 * 
-	 * resultado="OK";
-	 * 
-	 * 
-	 * 
-	 * }catch (Exception e) { e.printStackTrace(); resultado="Error"; } finally {
-	 * 
-	 * try {
-	 * 
-	 * prepStatement.close(); conexion.desconectar();
-	 * 
-	 * } catch (SQLException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 * 
-	 * System.out.println(resultado); return resultado;
-	 * 
-	 * 
-	 * }
-	 * 
-	 * 
-	 * public String añadirIntegrantes(int idPR, int[] integrantes) {
-	 * 
-	 * String resultado = ""; Connection connection=null; PreparedStatement
-	 * prepStatement=null;
-	 * 
-	 * ConexionDB conexion = new ConexionDB(); String
-	 * consulta="INSERT INTO integrantes (proyecto_id, user_id) VALUES (?, ?)";
-	 * connection=conexion.establecerConexion();
-	 * 
-	 * 
-	 * try { prepStatement=connection.prepareStatement(consulta); for (int
-	 * id_usuario : integrantes) { prepStatement.setInt(1, idPR);
-	 * prepStatement.setInt(2, id_usuario); prepStatement.execute(); }
-	 * resultado="OK";
-	 * 
-	 * 
-	 * 
-	 * }catch (Exception e) { e.printStackTrace(); resultado="Error"; }finally {
-	 * 
-	 * try {
-	 * 
-	 * prepStatement.close(); conexion.desconectar();
-	 * 
-	 * } catch (SQLException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); }
-	 * 
-	 * }
-	 * 
-	 * return resultado;
-	 * 
-	 * 
-	 * }
-	 */
-
 	/**
 	 * Método para saber el ID del proyecto de un alumno consultando
 	 * 
@@ -168,12 +119,9 @@ public class IntegrantesDTO {
 	public int devolverIdProyecto(int id_alumno) { // Método para saber el ID del proyecto de un alumno consultando
 
 		int prID = 0;
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "SELECT proyecto_id FROM integrantes WHERE user_id =?";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -195,7 +143,6 @@ public class IntegrantesDTO {
 
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

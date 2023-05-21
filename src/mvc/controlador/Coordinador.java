@@ -2,6 +2,7 @@ package mvc.controlador;
 
 import java.awt.Component;
 import java.awt.event.*;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import mvc.modelo.vo.*;
@@ -44,13 +45,13 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	// -------------------------------------------
 
 	/**
-	 * setter del UsuarioDTO
+	 * Método para tener una instancia de DetallesAreas
 	 * 
-	 * @param miUsuarioDTO
+	 * @param miDetallesAreas
 	 */
-	public void setUsuarioDTO(UsuarioDTO miUsuarioDTO) {
+	public void setDetallesAreas(DetallesAreas miDetallesAreas) {
 
-		this.miUsuarioDTO = miUsuarioDTO;
+		this.miDetallesAreas = miDetallesAreas;
 
 	}
 
@@ -99,13 +100,13 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	}
 
 	/**
-	 * setter de la Logica
+	 * setter de DetallesProyectos
 	 * 
-	 * @param miLogica
+	 * @param miDetallesProyectos
 	 */
-	public void setLogica(Logica miLogica) {
+	public void setDetallesProyecto(DetallesProyecto miDetallesProyectos) {
+		this.miDetallesProyectos = miDetallesProyectos;
 
-		this.miLogica = miLogica;
 	}
 
 	/**
@@ -119,12 +120,23 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	}
 
 	/**
-	 * setter de DetallesProyectos
+	 * setter de la Logica
 	 * 
-	 * @param miDetallesProyectos
+	 * @param miLogica
 	 */
-	public void setDetallesProyecto(DetallesProyecto miDetallesProyectos) {
-		this.miDetallesProyectos = miDetallesProyectos;
+	public void setLogica(Logica miLogica) {
+
+		this.miLogica = miLogica;
+	}
+
+	/**
+	 * setter del UsuarioDTO
+	 * 
+	 * @param miUsuarioDTO
+	 */
+	public void setUsuarioDTO(UsuarioDTO miUsuarioDTO) {
+
+		this.miUsuarioDTO = miUsuarioDTO;
 
 	}
 
@@ -146,6 +158,17 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	public void setProyectoDTO(ProyectoDTO miProyectoDTO) {
 
 		this.miProyectoDTO = miProyectoDTO;
+
+	}
+
+	/**
+	 * Método para tener una instancia de IntegrantesDTO
+	 * 
+	 * @param miIntengrantesDTO
+	 */
+	public void setIntegrantesDTO(IntegrantesDTO miIntengrantesDTO) {
+
+		this.miIntegrantesDTO = miIntengrantesDTO;
 
 	}
 
@@ -176,6 +199,14 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 			int resp = JOptionPane.showConfirmDialog(null, "¿Quiere salir de la aplicación", "WARNING",
 					JOptionPane.YES_NO_OPTION);
 			if (resp == 0) {
+				try {
+					miProyectoDTO.getConnection().close();
+					miUsuarioDTO.getConnection().close();
+					miIntegrantesDTO.getConnection().close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 
@@ -224,6 +255,14 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 			int resp = JOptionPane.showOptionDialog(miVentanaAplicacion, "¿Quieres salir?", null, 0, 0, null, null, e);
 			System.out.println(resp);
 			if (resp == 0) {
+				try {
+					miProyectoDTO.getConnection().close();
+					miUsuarioDTO.getConnection().close();
+					miIntegrantesDTO.getConnection().close();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				System.exit(0);
 			}
 		}
@@ -838,17 +877,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	}
 
 	/**
-	 * Método para que nos devuelva el nombre del area
-	 * 
-	 * @param area
-	 * @return devolverNombreCortoArea
-	 */
-	public String devolverArea(int area) {
-		// TODO Auto-generated method stub
-		return miAreaDTO.devolverNombreCortoArea(area);
-	}
-
-	/**
 	 * Método que carga los alumnos en un arraylist con los datos de UsuarioVO
 	 * 
 	 * @return cargarAlumnos
@@ -856,17 +884,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	public ArrayList<UsuarioVO> cargarAlumnos() {
 		return miUsuarioDTO.cargarAlumnos();
 		// TODO Auto-generated method stub
-
-	}
-
-	/**
-	 * Método para tener una instancia de IntegrantesDTO
-	 * 
-	 * @param miIntengrantesDTO
-	 */
-	public void setIntegrantesDTO(IntegrantesDTO miIntengrantesDTO) {
-
-		this.miIntegrantesDTO = miIntengrantesDTO;
 
 	}
 
@@ -892,14 +909,14 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	}
 
 	/**
-	 * Método para tener una instancia de DetallesAreas
+	 * Método para que nos devuelva el nombre corto del area
 	 * 
-	 * @param miDetallesAreas
+	 * @param area
+	 * @return devolverNombreCortoArea
 	 */
-	public void setDetallesAreas(DetallesAreas miDetallesAreas) {
+	public String devolverArea(int id_area) {
 
-		this.miDetallesAreas = miDetallesAreas;
-
+		return miAreaDTO.devolverNombreCortoArea(id_area);
 	}
 
 	// ------------- Método para escuchar a los ComboBox

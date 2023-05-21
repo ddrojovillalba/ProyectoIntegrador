@@ -19,6 +19,21 @@ import mvc.modelo.vo.UsuarioVO;
 public class ProyectoDTO {
 
 	private Coordinador miCoordinador;
+	private Connection connection;
+	private ConexionDB conexionProyectoDTO = new ConexionDB();
+
+	public ProyectoDTO() {
+		connection = conexionProyectoDTO.establecerConexion();
+	}
+
+	/**
+	 * Constructor para los test
+	 * 
+	 * @param conn
+	 */
+	public ProyectoDTO(Connection conn) {
+		connection = conn;
+	}
 
 	/**
 	 * Método para tener una instancia del coordinador
@@ -32,6 +47,15 @@ public class ProyectoDTO {
 	}
 
 	/**
+	 * getter de la conexion de la clase a la BD
+	 * 
+	 * @return connection
+	 */
+	public Connection getConnection() {
+		return connection;
+	}
+
+	/**
 	 * Método para meter en un arrayList proyectos filtrados por una busqueda
 	 * realizada
 	 * 
@@ -42,10 +66,8 @@ public class ProyectoDTO {
 
 		ProyectoVO proyecto;
 		ArrayList listaFiltrada = new ArrayList<>();
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "SELECT proyecto_id, nombre_proyecto, area_id, curso FROM proyectos WHERE nombre_proyecto REGEXP ? OR grupo REGEXP ? OR año REGEXP ? OR curso REGEXP ? ORDER BY nombre_proyecto"; // CAMBIAR
 																																																			// POR
 																																																			// QUERY
@@ -55,8 +77,6 @@ public class ProyectoDTO {
 		if (busqueda.equals("")) {
 			consulta = "SELECT proyecto_id, nombre_proyecto, area_id, curso FROM proyectos";
 		}
-
-		connection = conexion.establecerConexion();
 
 		System.out.println(busqueda + ", " + consulta);
 
@@ -90,7 +110,6 @@ public class ProyectoDTO {
 			try {
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -104,7 +123,7 @@ public class ProyectoDTO {
 	}
 
 	/**
-	 * Método para mostrar todo los datos de proyecto ne base a el id que se
+	 * Método para mostrar todo los datos de proyecto en base a el id que se
 	 * introduzca
 	 * 
 	 * @param prID
@@ -112,12 +131,9 @@ public class ProyectoDTO {
 	 */
 	public ProyectoVO mostrarDetalle(int prID) {
 		ProyectoVO proyecto = new ProyectoVO();
-		Connection connection = null;
 		PreparedStatement prepStatement = null;
 		ResultSet resultadoConsulta = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "SELECT * FROM proyectos WHERE proyecto_id = ?";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
@@ -131,7 +147,7 @@ public class ProyectoDTO {
 				proyecto.setNombreProyecto(resultadoConsulta.getString("nombre_proyecto"));
 				proyecto.setUrl(resultadoConsulta.getString("url"));
 				proyecto.setNota(resultadoConsulta.getDouble("nota"));
-				proyecto.setAño(resultadoConsulta.getString("año"));
+				proyecto.setYear(resultadoConsulta.getString("año"));
 				proyecto.setCurso(resultadoConsulta.getString("curso"));
 				proyecto.setGrupo(resultadoConsulta.getString("grupo"));
 				proyecto.setArea(resultadoConsulta.getInt("area_id"));
@@ -146,7 +162,6 @@ public class ProyectoDTO {
 			try {
 				resultadoConsulta.close();
 				prepStatement.close();
-				conexion.desconectar();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -167,16 +182,13 @@ public class ProyectoDTO {
 	 */
 	public String actualizarProyecto(ProyectoVO proyecto, int[] integrantes, int idPR) {
 		String resultado = "";
-		Connection connection = null;
 		PreparedStatement prepStProyecto = null;
 		PreparedStatement prepStBorrarIntegrantes = null;
 		PreparedStatement prepStAñadirIntegrantes = null;
 
-		ConexionDB conexion = new ConexionDB();
 		String sqlInsertarProyecto = "UPDATE proyectos SET nombre_proyecto = ?, url=?, nota=?, año=?, curso=?, grupo=?, area_id=? WHERE proyecto_id = ?";
 		String sqlBorrarIntegrantes = "DELETE FROM integrantes WHERE proyecto_id = ?";
 		String sqlInsetarIntegrantes = "INSERT INTO integrantes (proyecto_id, user_id) VALUES (?, ?)";
-		connection = conexion.establecerConexion();
 
 		try {
 			connection.setAutoCommit(false);
@@ -190,12 +202,12 @@ public class ProyectoDTO {
 			prepStProyecto.setInt(7, proyecto.getArea());
 			prepStProyecto.setInt(8, proyecto.getIdProyecto());
 
-			prepStProyecto.executeQuery();
+			prepStProyecto.executeUpdate();
 
 			prepStBorrarIntegrantes = connection.prepareStatement(sqlBorrarIntegrantes);
-			prepStBorrarIntegrantes.setInt(8, proyecto.getIdProyecto());
+			prepStBorrarIntegrantes.setInt(1, proyecto.getIdProyecto());
 
-			prepStBorrarIntegrantes.executeQuery();
+			prepStBorrarIntegrantes.executeUpdate();
 
 			prepStAñadirIntegrantes = connection.prepareStatement(sqlInsetarIntegrantes);
 			for (int id_usuario : integrantes) {
@@ -228,9 +240,6 @@ public class ProyectoDTO {
 				if (prepStBorrarIntegrantes != null) {
 					prepStBorrarIntegrantes.close();
 				}
-				if (connection != null) {
-					conexion.desconectar();
-				}
 
 			} catch (SQLException e) {
 
@@ -250,15 +259,12 @@ public class ProyectoDTO {
 	 */
 	public String añadirProyecto(ProyectoVO proyecto, int[] integrantes) {
 		String resultado = "";
-		Connection connection = null;
 		PreparedStatement prepStProyecto = null;
 		PreparedStatement prepStIntegrantes = null;
 		ResultSet rs = null;
 
-		ConexionDB conexion = new ConexionDB();
 		String sqlInsertarProyecto = "INSERT INTO proyectos (nombre_proyecto, url, nota, año, curso, grupo, area_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 		String consultaID = "SELECT LAST_INSERT_ID()";
-		connection = conexion.establecerConexion();
 
 		try {
 			connection.setAutoCommit(false);
@@ -317,9 +323,6 @@ public class ProyectoDTO {
 				if (prepStIntegrantes != null) {
 					prepStIntegrantes.close();
 				}
-				if (connection != null) {
-					conexion.desconectar();
-				}
 
 			} catch (SQLException e) {
 
@@ -340,11 +343,9 @@ public class ProyectoDTO {
 	public String borrarProyecto(int idPR) {
 
 		String resultado = "";
-		Connection connection = null;
+
 		PreparedStatement prepStatement = null;
-		ConexionDB conexion = new ConexionDB();
 		String consulta = "DELETE FROM proyectos WHERE proyecto_id = ?";
-		connection = conexion.establecerConexion();
 
 		try {
 			prepStatement = connection.prepareStatement(consulta);
