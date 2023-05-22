@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
+ * Paquete con las clases de interfaz de usuario para el proyecto.
  */
 package VentanaProyectoIntegrador;
 
@@ -8,14 +8,14 @@ import java.awt.Font;
 
 /**
  * Clase VentanaConsultas.
- * Esta clase es una ventana de la interfaz de usuario que permite realizar consultas sobre los proyectos, alumnos y áreas.
- * Hereda de JFrame y proporciona funcionalidades para filtrar y visualizar los resultados de las consultas.
+ * Ventana para consultas sobre proyectos, alumnos y áreas.
+ * Hereda de JFrame, permite filtrar y visualizar resultados de consultas.
  * 
  * @author Mario
  */
 public class VentanaConsultas extends JFrame {
 	
-	// Componentes de la interfaz de usuario
+	// Componentes de la interfaz
 	JLabel lblConsultas;
 	JLabel lblFiltro;
 	JTextField txtBusqueda;
@@ -23,8 +23,8 @@ public class VentanaConsultas extends JFrame {
 	JButton btnDetalles;
 
 	/**
-	 * Constructor de la clase VentanaConsultas.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor.
+	 * Inicializa la ventana y sus componentes.
 	 */
 	public VentanaConsultas() {
 		super("Consultor de Proyectos/alumnos/áreas");
@@ -32,14 +32,13 @@ public class VentanaConsultas extends JFrame {
 	}
 	
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas, el campo de texto para el filtro, 
-	 * el área de texto para los resultados y el botón para ver los detalles, y los añade al contenedor principal.
+	 * Método para inicializar los componentes de la ventana.
+	 * Configura el layout, crea e inicializa las etiquetas, el campo de texto y el botón.
 	 */
 	public void inicializarComponentes() {
 		getContentPane().setLayout(null);
 		
-		// Creación e inicialización de los componentes de la interfaz de usuario
+		// Creación e inicialización de los componentes
 		
 		lblConsultas = new JLabel("Consultas");
 		lblConsultas.setFont(new Font("Tahoma", Font.PLAIN, 22));
