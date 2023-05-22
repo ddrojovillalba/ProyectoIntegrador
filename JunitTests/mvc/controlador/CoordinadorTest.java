@@ -35,6 +35,9 @@ class CoordinadorTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * test que te devuelve el nombre del area que le pides
+	 */
 	@Test
 	void testDevolverArea() {
 		AreaDTO areaDTO = new AreaDTO();
@@ -43,6 +46,9 @@ class CoordinadorTest {
 		assertEquals("DAW", coordinador.devolverArea(1));
 	}
 
+	/**
+	 * carga los alumnos que hay en el array de UsuariosVO
+	 */
 	@Test
 	void testCargarAlumnos() {
 		UsuarioDTO usuario = new UsuarioDTO();
@@ -52,6 +58,9 @@ class CoordinadorTest {
 		assertEquals(lista.getClass(), coordinador.cargarAlumnos().getClass());
 	}
 
+	/**
+	 * carga en el comboAreas de areaDTO las areas
+	 */
 	@Test
 	void testRellenarComboAreas() {
 		AreaDTO areaDTO = new AreaDTO();
@@ -61,6 +70,9 @@ class CoordinadorTest {
 		assertEquals(miLista.getClass(), coordinador.rellenarComboAreas().getClass());
 	}
 
+	/**
+	 * devuelve el id de el area que le introducimos
+	 */
 	@Test
 	void testDevolverIdArea() {
 		AreaDTO areaDTO = new AreaDTO();

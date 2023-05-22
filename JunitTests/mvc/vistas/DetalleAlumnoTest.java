@@ -31,6 +31,10 @@ class DetalleAlumnoTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * recoge los datos y los encapsula para luego devolvernos esa informacion
+	 * encapsulada
+	 */
 	@Test
 	void capturarDatosUsuarioTest() {
 		UsuarioVO usuario = new UsuarioVO();
@@ -38,6 +42,9 @@ class DetalleAlumnoTest {
 		assertEquals(usuario.getClass(), detalleAlumno.capturarDatosUsuario().getClass());
 	}
 
+	/**
+	 * comprueba que los campos de los datos del alumno están rellenos
+	 */
 	@Test
 	void comprobarCamposRellenosTest() {
 		UsuarioVO usuarioVO = new UsuarioVO();

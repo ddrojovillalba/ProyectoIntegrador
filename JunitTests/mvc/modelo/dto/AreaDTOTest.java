@@ -55,6 +55,9 @@ class AreaDTOTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * carga en el comboAreas de areaDTO las areas
+	 */
 	@Test
 	void rellenarComboAreastest() {
 		ArrayList<String> miLista = new ArrayList<>();
@@ -62,6 +65,9 @@ class AreaDTOTest {
 		assertEquals(miLista.getClass(), areaDTO.rellenarComboAreas().getClass());
 	}
 
+	/**
+	 * devuelve el id del nombre que introducimos
+	 */
 	@Test
 
 	void devolverIdAreatest() {
@@ -71,12 +77,18 @@ class AreaDTOTest {
 
 	}
 
+	/**
+	 * devuelve el nombre segun el id que le introduzcamos
+	 */
 	@Test
 	void devolverNombreCortoAreaTest() {
 
 		assertEquals("DAW", areaDTO.devolverNombreCortoArea(1));
 	}
 
+	/**
+	 * devuelve toda la informacion del area seleccionada
+	 */
 	@Test
 	void devolverAreaTest() {
 		AreaVO areaVO = new AreaVO();

@@ -37,6 +37,9 @@ class DetallesProyectoTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * devuelve los integrantes del array de integrantes
+	 */
 	@Test
 	void getIntegrantesTest() {
 
@@ -46,6 +49,9 @@ class DetallesProyectoTest {
 		assertEquals(integrantes.getClass(), detallesProyecto.getIntegrantes().getClass());
 	}
 
+	/**
+	 * comprueba que los campos han sido rellenados
+	 */
 	@Test
 	void estanCamposRellenosTest() {
 		ProyectoVO proyectoVO = new ProyectoVO();
@@ -59,6 +65,9 @@ class DetallesProyectoTest {
 		assertTrue(detallesProyecto.estanCamposRellenos());
 	}
 
+	/**
+	 * coge los datos que hay en los campos
+	 */
 	@Test
 	void getCamposTest() {
 		ProyectoVO proyectoVO = new ProyectoVO();

@@ -43,6 +43,9 @@ class ProyectoDTOTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * test por el cual busca en un arraylist de una manera filtrada
+	 */
 	@Test
 	void miListaProyectosFiltradatest() {
 		ArrayList<ProyectoVO> miLista = new ArrayList<>();
@@ -50,6 +53,9 @@ class ProyectoDTOTest {
 		assertEquals(miLista.getClass(), proyectoDTO.miListaProyectosFiltrada("Airforce").getClass());
 	}
 
+	/**
+	 * muestra los detalles del proyecto segun el id del proyeccto
+	 */
 	@Test
 	void mostrarDetalleTest() {
 		ProyectoVO proyectoVO = new ProyectoVO();
@@ -57,6 +63,9 @@ class ProyectoDTOTest {
 		assertEquals(proyectoVO.getClass(), proyectoDTO.mostrarDetalle(1).getClass());
 	}
 
+	/**
+	 * actualiza los datos del proyecto
+	 */
 	@Test
 	void actualizarProyectoTest() {
 		try {
@@ -89,6 +98,9 @@ class ProyectoDTOTest {
 		}
 	}
 
+	/**
+	 * añade un proyecto a la base de datos
+	 */
 	@Test
 	void añadirProyectoTest() {
 		try {
@@ -122,6 +134,9 @@ class ProyectoDTOTest {
 
 	}
 
+	/**
+	 * borra un proyecto de la base de datos
+	 */
 	@Test
 	void borrarProyectoTest() {
 		try {

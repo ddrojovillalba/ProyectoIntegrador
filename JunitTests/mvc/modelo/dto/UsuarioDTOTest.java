@@ -43,6 +43,9 @@ class UsuarioDTOTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * comprueba que el usuario introducido está en la base de datos
+	 */
 	@Test
 	void comprobarUsuariotest() {
 		UsuarioVO usuarioVO = new UsuarioVO();
@@ -58,6 +61,9 @@ class UsuarioDTOTest {
 		assertTrue(valores.contains(usuarioDTO.comprobarUsuario(usuarioVO)));
 	}
 
+	/**
+	 * realiza una busqueda filtrada por una condición
+	 */
 	@Test
 	void miListaUsuariosFiltadaTest() {
 		ArrayList<UsuarioVO> miLista = new ArrayList<>();
@@ -65,6 +71,9 @@ class UsuarioDTOTest {
 		assertEquals(miLista.getClass(), usuarioDTO.miListaUsuariosFiltada("").getClass());
 	}
 
+	/**
+	 * se muestra los detalles del usuario
+	 */
 	@Test
 	void mostrarDetalleTest() {
 		UsuarioVO usuarioVO = new UsuarioVO();
@@ -72,6 +81,9 @@ class UsuarioDTOTest {
 		assertEquals(usuarioVO.getClass(), usuarioDTO.mostrarDetalle(2).getClass());
 	}
 
+	/**
+	 * actualiza los datos del usuario
+	 */
 	@Test
 	void actualizarUsuarioTest() {
 		try {
@@ -101,6 +113,9 @@ class UsuarioDTOTest {
 		}
 	}
 
+	/**
+	 * registra un nuevo usuario
+	 */
 	@Test
 	void registrarUsuarioTest() {
 		try {
@@ -130,6 +145,9 @@ class UsuarioDTOTest {
 		}
 	}
 
+	/**
+	 * borra un usuario de la base de datos
+	 */
 	@Test
 	void borrarUsuarioTest() {
 		try {
@@ -153,6 +171,9 @@ class UsuarioDTOTest {
 		}
 	}
 
+	/**
+	 * carga los alumnos en un arraylist de usuarioVO
+	 */
 	@Test
 	void cargarAlumnosTest() {
 		UsuarioVO usuario = new UsuarioVO();
@@ -161,6 +182,9 @@ class UsuarioDTOTest {
 		assertEquals(lista.getClass(), usuarioDTO.cargarAlumnos().getClass());
 	}
 
+	/**
+	 * comprueba que los campos no estén vacios
+	 */
 	@Test
 	void validarCamposTest() {
 		UsuarioVO usuarioVO = new UsuarioVO();

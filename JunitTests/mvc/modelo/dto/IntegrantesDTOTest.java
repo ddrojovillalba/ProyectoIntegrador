@@ -32,6 +32,9 @@ class IntegrantesDTOTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * carga los integrantes dentro de un arrayList de usuarioVO
+	 */
 	@Test
 	void CargarIntegrantesTest() {
 		UsuarioVO usuario = new UsuarioVO();
@@ -40,6 +43,9 @@ class IntegrantesDTOTest {
 		assertEquals(lista.getClass(), integrantesDTO.CargarIntegrantes(2).getClass());
 	}
 
+	/**
+	 * devuelve el id del proyecto que se pide
+	 */
 	@Test
 	void devolverIdProyectoTest() {
 		Integer id = 0;

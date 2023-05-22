@@ -32,6 +32,9 @@ class ConexionDBTest {
 	void tearDown() throws Exception {
 	}
 
+	/**
+	 * prueba la conexion con la base de datos
+	 */
 	@Test
 	void testConexionDB() {
 		assertThrows(ClassNotFoundException.class, () -> {
@@ -43,6 +46,9 @@ class ConexionDBTest {
 
 	}
 
+	/**
+	 * prueba la conexion con la base de datos utilizando el constructor normal y no el de test
+	 */
 	@Test
 	void testConexionSinExcepcion() {
 		con = conexionDB.establecerConexion();
