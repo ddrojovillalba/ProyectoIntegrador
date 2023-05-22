@@ -1,5 +1,3 @@
-# ProyectoIntegrador!
-
 # ProyectoIntegrador
 
 Este repositorio contiene los archivos del Proyecto Integrador, una aplicación Java que permite gestionar proyectos, áreas y alumnos. Esta aplicación sigue el patrón de diseño Modelo-Vista-Controlador (MVC) y utiliza una base de datos para almacenar y recuperar los datos.
