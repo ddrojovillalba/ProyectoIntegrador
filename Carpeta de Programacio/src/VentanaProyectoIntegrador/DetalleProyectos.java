@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
+ * Paquete con interfaces de usuario del Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
@@ -8,31 +8,28 @@ import javax.swing.*;
 
 /**
  * Clase DetalleProyectos.
- * Esta clase es una ventana que muestra los detalles específicos de los proyectos.
- * Hereda de JFrame y se utiliza para presentar información detallada sobre un proyecto específico.
+ * Ventana para mostrar detalles de proyectos. Hereda de JFrame.
  * 
  * @author Mario
  */
 public class DetalleProyectos extends JFrame {
 	
-	// Etiqueta para el título de la ventana
+	// Título de la ventana
 	JLabel lblDetalles;
 	
-	// Etiqueta para mostrar los datos del proyecto
+	// Datos del proyecto
 	JLabel lblDatos;
 	
 	/**
-	 * Constructor de la clase DetalleProyectos.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor de DetalleProyectos. Inicializa la ventana y componentes.
 	 */
 	public DetalleProyectos() {
 		super("Detalles de Proyectos");
 		inicializarComponentes();
 	}
-
+	
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas, y las añade al contenedor principal.
+	 * Método para configurar componentes de la interfaz.
 	 */
 	private void inicializarComponentes() {
 		getContentPane().setLayout(null);
