@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
+ * Paquete con las clases de interfaz de usuario para el proyecto.
  */
 package VentanaProyectoIntegrador;
 
@@ -8,14 +8,14 @@ import java.awt.Font;
 
 /**
  * Clase VentanaProyectoIntegrador.
- * Esta clase es una ventana de la interfaz de usuario que permite gestionar los proyectos.
- * Hereda de JFrame y proporciona funcionalidades para crear, consultar, editar y eliminar proyectos.
+ * Ventana para gestionar los proyectos.
+ * Hereda de JFrame y permite crear, consultar, editar y eliminar proyectos.
  * 
  * @author Mario
  */
 public class VentanaProyectoIntegrador extends JFrame{
 	
-	// Componentes de la interfaz de usuario
+	// Componentes de la interfaz
 	JLabel lblProyecto;
 	JButton btnCrear;
 	JButton btnConsultar;
@@ -27,8 +27,8 @@ public class VentanaProyectoIntegrador extends JFrame{
 	JLabel lblEliminar;
 	
 	/**
-	 * Constructor de la clase VentanaProyectoIntegrador.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor.
+	 * Inicializa la ventana y sus componentes.
 	 */
 	public VentanaProyectoIntegrador() {
 		super("Gestor de Proyectos");
@@ -36,13 +36,13 @@ public class VentanaProyectoIntegrador extends JFrame{
 	}
 	
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas y botones, y los añade al contenedor principal.
+	 * Método para inicializar los componentes de la ventana.
+	 * Configura el layout, crea e inicializa las etiquetas y botones.
 	 */
 	public void inicializarComponentes() {
 		getContentPane().setLayout(null);
 		
-		// Creación e inicialización de los componentes de la interfaz de usuario
+		// Creación e inicialización de los componentes
 		
 		lblProyecto =new JLabel("Proyectos");
 		lblProyecto.setFont(new Font("Tahoma", Font.PLAIN, 33));
