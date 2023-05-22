@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
+ * Paquete con las interfaces de usuario del Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
@@ -8,27 +8,19 @@ import java.awt.Font;
 
 /**
  * Clase VentanaAlumnos.
- * Esta clase es una ventana de la interfaz de usuario que permite gestionar los alumnos.
- * Hereda de JFrame y proporciona funcionalidades para añadir, consultar, editar y eliminar alumnos.
+ * Ventana para gestionar alumnos. Extiende de JFrame.
  * 
  * @author Mario
  */
 public class VentanaAlumnos extends JFrame {
 
-	// Componentes de la interfaz de usuario
+	// Componentes de la interfaz
 	JLabel lblAlumnos;
-	JButton btnAñadir;
-	JLabel lblAñadir;
-	JButton btnConsultar;
-	JLabel lblConsultar;
-	JButton btnEditar;
-	JLabel lblEditar;
-	JButton btnEliminar;
-	JLabel lblEliminar;
+	JButton btnAñadir, btnConsultar, btnEditar, btnEliminar;
+	JLabel lblAñadir, lblConsultar, lblEditar, lblEliminar;
 	
 	/**
-	 * Constructor de la clase VentanaAlumnos.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor de VentanaAlumnos. Configura la ventana y componentes.
 	 */
 	public VentanaAlumnos() {
 		super("Gestor de Alumnos");
@@ -36,19 +28,19 @@ public class VentanaAlumnos extends JFrame {
 	}
 
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas y los botones, y los añade al contenedor principal.
+	 * Método para configurar componentes de la interfaz.
 	 */
 	public void inicializarComponentes() {
 		getContentPane().setLayout(null);
 		
-		// Creación e inicialización de los componentes de la interfaz de usuario
+		// Inicialización de los componentes
 
 		lblAlumnos = new JLabel("Alumnos");
 		lblAlumnos.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblAlumnos.setBounds(10, 22, 88, 20);
 		getContentPane().add(lblAlumnos);
 		
+		// Añadir alumno
 		btnAñadir = new JButton("Pulse aquí");
 		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAñadir.setBounds(10, 64, 105, 20);
@@ -59,6 +51,7 @@ public class VentanaAlumnos extends JFrame {
 		lblAñadir.setBounds(125, 63, 104, 20);
 		getContentPane().add(lblAñadir);
 		
+		// Consultar alumno
 		btnConsultar = new JButton("Pulse aquí");
 		btnConsultar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnConsultar.setBounds(10, 94, 105, 20);
@@ -69,6 +62,7 @@ public class VentanaAlumnos extends JFrame {
 		lblConsultar.setBounds(125, 93, 116, 20);
 		getContentPane().add(lblConsultar);
 		
+		// Editar alumno
 		btnEditar = new JButton("Pulse aquí");
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEditar.setBounds(10, 124, 105, 20);
@@ -79,6 +73,7 @@ public class VentanaAlumnos extends JFrame {
 		lblEditar.setBounds(125, 123, 116, 20);
 		getContentPane().add(lblEditar);
 		
+		// Eliminar alumno
 		btnEliminar = new JButton("Pulse aquí");
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEliminar.setBounds(10, 154, 105, 20);
