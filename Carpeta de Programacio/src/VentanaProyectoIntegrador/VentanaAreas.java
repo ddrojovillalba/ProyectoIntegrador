@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
+ * Este paquete contiene las clases de interfaz de usuario del Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
@@ -7,28 +7,19 @@ import javax.swing.*;
 import java.awt.Font;
 
 /**
- * Clase VentanaAreas.
- * Esta clase es una ventana de la interfaz de usuario que permite gestionar las áreas.
- * Hereda de JFrame y proporciona funcionalidades para añadir, consultar, editar y eliminar áreas.
+ * VentanaAreas, es una ventana de interfaz para la gestión de áreas.
+ * Hereda de JFrame para proporcionar las funcionalidades de añadir, consultar, editar y eliminar áreas.
  * 
  * @author Mario
  */
 public class VentanaAreas extends JFrame {
 
 	// Componentes de la interfaz de usuario
-	JLabel lblAreas;
-	JLabel lblAñadir;
-	JLabel lblConsultar;
-	JLabel lblEditar;
-	JLabel lblEliminar;
-	JButton btnAñadir;
-	JButton btnConsultar;
-	JButton btnEditar;
-	JButton btnEliminar;
+	JLabel lblAreas, lblAñadir, lblConsultar, lblEditar, lblEliminar;
+	JButton btnAñadir, btnConsultar, btnEditar, btnEliminar;
 	
 	/**
-	 * Constructor de la clase VentanaAreas.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor de VentanaAreas. Inicializa la ventana y sus componentes.
 	 */
 	public VentanaAreas() {
 		super("Gestor de áreas");
@@ -36,19 +27,17 @@ public class VentanaAreas extends JFrame {
 	}
 
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas y los botones, y los añade al contenedor principal.
+	 * Configura la interfaz, creando e inicializando etiquetas y botones.
 	 */
 	private void inicializarComponentes() {
 		getContentPane().setLayout(null);
 		
-		// Creación e inicialización de los componentes de la interfaz de usuario
-
 		lblAreas = new JLabel("Áreas");
 		lblAreas.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblAreas.setBounds(10, 10, 88, 32);
 		getContentPane().add(lblAreas);
 		
+		// Añadir área
 		btnAñadir = new JButton("Pulse aquí");
 		btnAñadir.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnAñadir.setBounds(10, 64, 105, 20);
@@ -59,6 +48,7 @@ public class VentanaAreas extends JFrame {
 		lblAñadir.setBounds(125, 63, 104, 20);
 		getContentPane().add(lblAñadir);
 		
+		// Consultar área
 		btnConsultar = new JButton("Pulse Aquí");
 		btnConsultar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnConsultar.setBounds(10, 94, 105, 20);
@@ -69,6 +59,7 @@ public class VentanaAreas extends JFrame {
 		lblConsultar.setBounds(125, 93, 116, 20);
 		getContentPane().add(lblConsultar);
 		
+		// Editar área
 		btnEditar = new JButton("Pulse aquí");
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEditar.setBounds(10, 124, 105, 20);
@@ -79,6 +70,7 @@ public class VentanaAreas extends JFrame {
 		lblEditar.setBounds(125, 123, 116, 20);
 		getContentPane().add(lblEditar);
 		
+		// Eliminar área
 		btnEliminar = new JButton("Pulse aquí");
 		btnEliminar.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		btnEliminar.setBounds(10, 154, 105, 20);
@@ -88,5 +80,3 @@ public class VentanaAreas extends JFrame {
 		lblEliminar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblEliminar.setBounds(125, 153, 116, 20);
 		getContentPane().add(lblEliminar);
-	}
-}
