@@ -1,13 +1,12 @@
 /**
- * Este es el paquete que contiene la clase Modelo para el Proyecto Integrador.
+ * Paquete Modelo - Aloja la clase Modelo para el Proyecto Integrador.
  */
 package ModeloProyectorIntegrador;
 
 /**
  * Clase Modelo.
- * Esta clase es parte del modelo en la estructura MVC del Proyecto Integrador.
- * Su objetivo es manejar la lógica de negocios y las operaciones de datos de la aplicación.
- * Aquí es donde se implementarán las interacciones con la base de datos y se manipularán los datos.
+ * En el patrón MVC de nuestro proyecto, gestiona la lógica de negocio y las operaciones de datos.
+ * Se implementan las interacciones con la base de datos y la manipulación de datos aquí.
  * 
  * @author Mario
  */
