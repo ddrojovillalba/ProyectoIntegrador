@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de interfaz de usuario para el Proyecto Integrador.
+ * Paquete con interfaces de usuario para el Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
@@ -8,22 +8,20 @@ import javax.swing.*;
 
 /**
  * Clase DetalleArea.
- * Esta clase es una ventana de detalles específicos de las áreas del Proyecto Integrador.
- * Hereda de JFrame y se utiliza para mostrar información detallada de un área específica.
+ * Ventana de detalles de las áreas del proyecto. Hereda de JFrame.
  * 
  * @author Mario
  */
 public class DetalleArea extends JFrame {
 	
-	// Etiqueta para el título de la ventana
+	// Título de la ventana
 	JLabel lblDetalles;
 	
-	// Etiqueta para mostrar los datos del área
+	// Datos del área
 	JLabel lblDatos;
 	
 	/**
-	 * Constructor de la clase DetalleArea.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor de DetalleArea. Inicializa la ventana y los componentes.
 	 */
 	public DetalleArea() {
 		super("Detalles de Proyectos");
@@ -31,8 +29,7 @@ public class DetalleArea extends JFrame {
 	}
 	
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas y las añade al contenedor principal.
+	 * Método para configurar los componentes de la interfaz de usuario.
 	 */
 	private void inicializarComponentes() {
 		getContentPane().setLayout(null);
