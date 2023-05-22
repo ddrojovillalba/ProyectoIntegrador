@@ -80,11 +80,8 @@ public class IntegrantesDTO {
 
 				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
-				System.out.println(resultadoConsulta.getString("user_id"));
 				usuario.setNombre(resultadoConsulta.getString("nombre"));
-				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
-				System.out.println(resultadoConsulta.getString(3));
 				resultado.add(usuario);
 
 			}

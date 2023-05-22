@@ -345,11 +345,6 @@ public class DetalleAlumno extends JDialog {
 		String nick = usuario.getNick_name();
 		String password = usuario.getPassword();
 
-		System.out.println(name);
-		System.out.println(expediente);
-		System.out.println(nick);
-		System.out.println(password);
-
 		getTextId().setText(id + "");
 		getTxtNombre().setText(name);
 		getTxtExpediente().setText(expediente);

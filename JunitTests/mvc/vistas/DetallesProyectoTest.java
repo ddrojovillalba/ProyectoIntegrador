@@ -17,9 +17,10 @@ import mvc.modelo.vo.ProyectoVO;
 class DetallesProyectoTest {
 	private static DetallesProyecto detallesProyecto;
 	private static IntegrantesDTO integrantesDTO = new IntegrantesDTO();
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
-		detallesProyecto= new DetallesProyecto();
+		detallesProyecto = new DetallesProyecto();
 		detallesProyecto.cargarIntegrantes(integrantesDTO.CargarIntegrantes(3));
 	}
 
@@ -29,7 +30,7 @@ class DetallesProyectoTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		
+
 	}
 
 	@AfterEach
@@ -38,10 +39,10 @@ class DetallesProyectoTest {
 
 	@Test
 	void getIntegrantesTest() {
-		
-		int [] integrantes = new int [] {1};
+
+		int[] integrantes = new int[] { 1 };
 		assertNotNull(detallesProyecto.getIntegrantes());
-		
+
 		assertEquals(integrantes.getClass(), detallesProyecto.getIntegrantes().getClass());
 	}
 
@@ -57,19 +58,18 @@ class DetallesProyectoTest {
 		detallesProyecto.getTxtUrl().setText("www");
 		assertTrue(detallesProyecto.estanCamposRellenos());
 	}
-	
+
 	@Test
 	void getCamposTest() {
 		ProyectoVO proyectoVO = new ProyectoVO();
 		Coordinador micoordinador = new Coordinador();
 		AreaDTO miAreaDTO = new AreaDTO();
-		
+
 		detallesProyecto.setCoordinador(micoordinador);
 		micoordinador.setAreaDTO(miAreaDTO);
 		detallesProyecto.rellenarComboAreas(micoordinador.rellenarComboAreas());
 		detallesProyecto.getCmbAreas().setSelectedItem(1);
-		
-		
+
 		detallesProyecto.getTxtId().setText("0");
 		detallesProyecto.getTxtNomnrePr().setText("JI");
 		detallesProyecto.getTxtGrupo().setText("H89");

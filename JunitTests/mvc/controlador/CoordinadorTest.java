@@ -17,6 +17,7 @@ import mvc.modelo.vo.UsuarioVO;
 
 class CoordinadorTest {
 	private Coordinador coordinador;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -66,7 +67,7 @@ class CoordinadorTest {
 		coordinador.setAreaDTO(areaDTO);
 		assertNotNull(coordinador.devolverIdArea("DAW"));
 		assertEquals(1, coordinador.devolverIdArea("DAW"));
-		
+
 	}
 
 }

@@ -91,7 +91,6 @@ public class UsuarioDTO {
 
 				} else {
 
-					System.out.println("Los datos no coinciden");
 					respuesta = "Credenciales";
 				}
 
@@ -146,26 +145,21 @@ public class UsuarioDTO {
 			// buscados
 		}
 
-		System.out.println(busqueda + ", " + consulta);
-
 		try {
 			prepStatement = connection.prepareStatement(consulta);
 			if (!busqueda.equals("")) {
 				prepStatement.setString(1, busqueda + "");
 				prepStatement.setString(2, busqueda + "");
 			}
-			System.out.println(consulta + "despues del setString");
+
 			resultadoConsulta = prepStatement.executeQuery();
 
 			while (resultadoConsulta.next()) {
 
 				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
-				System.out.println(resultadoConsulta.getString("user_id"));
 				usuario.setNombre(resultadoConsulta.getString("nombre"));
-				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
-				System.out.println(resultadoConsulta.getString(3));
 				resultado.add(usuario);
 
 			}
@@ -214,9 +208,7 @@ public class UsuarioDTO {
 
 				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
-				System.out.println(resultadoConsulta.getString("user_id"));
 				usuario.setNombre(resultadoConsulta.getString("nombre"));
-				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
 				usuario.setNick_name(resultadoConsulta.getString("nick_name"));
 				usuario.setPassword(resultadoConsulta.getString("password"));
@@ -254,7 +246,6 @@ public class UsuarioDTO {
 	public String actualizarUsuario(UsuarioVO usuario) {
 
 		String resultado = "";
-		System.out.println("Conectado para actualizar");
 		PreparedStatement prepStatement = null;
 
 		String consulta = "UPDATE users SET nombre = ?, expediente=?, password=?, nick_name=?, es_profesor=? WHERE user_id = ?";
@@ -334,7 +325,6 @@ public class UsuarioDTO {
 
 		}
 
-		System.out.println(resultado);
 		return resultado;
 	}
 
@@ -374,7 +364,6 @@ public class UsuarioDTO {
 
 		}
 
-		System.out.println(resultado);
 		return resultado;
 
 	}
@@ -403,11 +392,8 @@ public class UsuarioDTO {
 
 				usuario = new UsuarioVO();
 				usuario.setUser_id(Integer.parseInt(resultadoConsulta.getString("user_id")));
-				System.out.println(resultadoConsulta.getString("user_id"));
 				usuario.setNombre(resultadoConsulta.getString("nombre"));
-				System.out.println(resultadoConsulta.getString("nombre"));
 				usuario.setExpediente(resultadoConsulta.getString("expediente"));
-				System.out.println(resultadoConsulta.getString(3));
 				listaUsuarios.add(usuario);
 
 			}

@@ -13,6 +13,7 @@ import mvc.modelo.vo.UsuarioVO;
 
 class DetalleAlumnoTest {
 	private DetalleAlumno detalleAlumno;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -23,7 +24,7 @@ class DetalleAlumnoTest {
 
 	@BeforeEach
 	void setUp() throws Exception {
-		 detalleAlumno = new DetalleAlumno(null);
+		detalleAlumno = new DetalleAlumno(null);
 	}
 
 	@AfterEach
@@ -36,7 +37,7 @@ class DetalleAlumnoTest {
 		assertNotNull(detalleAlumno.capturarDatosUsuario());
 		assertEquals(usuario.getClass(), detalleAlumno.capturarDatosUsuario().getClass());
 	}
-	
+
 	@Test
 	void comprobarCamposRellenosTest() {
 		UsuarioVO usuarioVO = new UsuarioVO();
@@ -54,7 +55,7 @@ class DetalleAlumnoTest {
 		detalleAlumno.getTxtExpediente().setText("2983822");
 		detalleAlumno.getRdbtnAlumno().setSelected(true);
 		assertTrue(detalleAlumno.comprobarCamposRellenos());
-		
+
 	}
 
 }

@@ -25,6 +25,7 @@ import mvc.modelo.vo.ProyectoVO;
  */
 class AreaDTOTest {
 	private AreaDTO areaDTO;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -53,29 +54,29 @@ class AreaDTOTest {
 	@AfterEach
 	void tearDown() throws Exception {
 	}
-	
+
 	@Test
 	void rellenarComboAreastest() {
 		ArrayList<String> miLista = new ArrayList<>();
 		assertNotNull(areaDTO.rellenarComboAreas());
 		assertEquals(miLista.getClass(), areaDTO.rellenarComboAreas().getClass());
 	}
-	
+
 	@Test
-	
+
 	void devolverIdAreatest() {
-	
+
 		assertEquals(1, areaDTO.devolverIdArea("DAW"));
 		assertEquals(2, areaDTO.devolverIdArea("DAM"));
-		
+
 	}
-	
+
 	@Test
 	void devolverNombreCortoAreaTest() {
 
 		assertEquals("DAW", areaDTO.devolverNombreCortoArea(1));
 	}
-	
+
 	@Test
 	void devolverAreaTest() {
 		AreaVO areaVO = new AreaVO();

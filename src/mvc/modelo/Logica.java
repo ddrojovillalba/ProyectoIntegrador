@@ -50,9 +50,9 @@ public class Logica {
 		}
 
 		if (validUser && validPass) {
-			System.out.println("El usuario introducido es " + usuario + " y su password " + pass);
+
 		} else {
-			JOptionPane.showMessageDialog(null, "Debes rellenar los campos", "Campos sin rellnar",
+			JOptionPane.showMessageDialog(null, "Debes rellenar los campos", "Campos sin rellenar",
 					JOptionPane.WARNING_MESSAGE);
 		}
 	}

@@ -768,7 +768,6 @@ public class DetallesProyecto extends JDialog {
 	public int integranteSeleccionado() {
 
 		int filaSeleccionada = this.getTblIntegrantes().getSelectedRow();
-		System.out.println("Fila seleccionada en integrante " + filaSeleccionada);
 		return filaSeleccionada;
 	}
 
@@ -779,12 +778,10 @@ public class DetallesProyecto extends JDialog {
 	 */
 	public int[] getIntegrantes() {
 		int filas = getTblIntegrantes().getRowCount();
-		System.out.println("Hay " + filas + " integrantes");
 		int[] integrantes = new int[filas];
 		for (int i = 0; i < filas; i++) {
 			integrantes[i] = Integer.parseInt((String) getTblIntegrantes().getModel().getValueAt(i, 0));
-			System.out.println("El id del integrante" + i + "es " + integrantes[i]);
-			System.out.println(integrantes[i]);
+
 		}
 		return integrantes;
 	}
@@ -819,9 +816,6 @@ public class DetallesProyecto extends JDialog {
 		proyecto.setCurso((String) getCmbCurso().getSelectedItem());
 		proyecto.setGrupo(getTxtGrupo().getText());
 		proyecto.setArea(idArea);
-
-		System.out.println("En getCampos de Detalles");
-		System.out.println(proyecto.getIdProyecto());
 
 		return proyecto;
 	}

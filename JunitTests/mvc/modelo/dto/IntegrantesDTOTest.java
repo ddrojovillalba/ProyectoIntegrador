@@ -14,6 +14,7 @@ import mvc.modelo.vo.UsuarioVO;
 
 class IntegrantesDTOTest {
 	private IntegrantesDTO integrantesDTO;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -38,7 +39,7 @@ class IntegrantesDTOTest {
 		assertNotNull(integrantesDTO.CargarIntegrantes(2));
 		assertEquals(lista.getClass(), integrantesDTO.CargarIntegrantes(2).getClass());
 	}
-	
+
 	@Test
 	void devolverIdProyectoTest() {
 		Integer id = 0;

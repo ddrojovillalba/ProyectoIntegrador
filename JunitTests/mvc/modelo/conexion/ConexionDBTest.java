@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 class ConexionDBTest {
 	private ConexionDB conexionDB = new ConexionDB();
 	private Connection con;
+
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -33,9 +34,21 @@ class ConexionDBTest {
 
 	@Test
 	void testConexionDB() {
-		assertThrows(ClassNotFoundException.class, ()-> {conexionDB = new ConexionDB("churro", "proyecto_integrador");});
-		assertThrows(SQLException.class, ()-> {conexionDB = new ConexionDB("com.mysql.cj.jdbc.Driver", "proyecto_churro");});
-		
+		assertThrows(ClassNotFoundException.class, () -> {
+			conexionDB = new ConexionDB("churro", "proyecto_integrador");
+		});
+		assertThrows(SQLException.class, () -> {
+			conexionDB = new ConexionDB("com.mysql.cj.jdbc.Driver", "proyecto_churro");
+		});
+
+	}
+
+	@Test
+	void testConexionSinExcepcion() {
+		con = conexionDB.establecerConexion();
+		assertNotNull(conexionDB.establecerConexion());
+		assertEquals(con.getClass(), conexionDB.establecerConexion().getClass());
+
 	}
 
 }

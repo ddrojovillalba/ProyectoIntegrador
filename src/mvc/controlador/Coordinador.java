@@ -188,7 +188,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			UsuarioVO usuarioLogeando = miVentanaLogin.cargarDatosLogin();
 
-			System.out.println("He clickado en el boton");
 			String resp = miUsuarioDTO.comprobarUsuario(usuarioLogeando);
 
 			comprobarRespuesta(usuarioLogeando, resp);
@@ -239,21 +238,19 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 		if (e.getSource() == miVentanaAplicacion.getSideBar().getBtnAyuda()) {
 
-			System.out.println("Click en editar proyectos ");
 			JOptionPane.showMessageDialog(miVentanaAplicacion, "La ayuda está en camino");
 
 		}
 
 		if (e.getSource() == miVentanaAplicacion.getSideBar().getBtnAcercaDe()) {
 
-			System.out.println("Click en editar proyectos ");
 			JOptionPane.showMessageDialog(miVentanaAplicacion,
 					"Proyecto realizado por el grupo Codies \n \n © 2023 - Universidad Europea");
 		}
 
 		if (e.getSource() == miVentanaAplicacion.getSideBar().getBtnSalir()) {
 			int resp = JOptionPane.showOptionDialog(miVentanaAplicacion, "¿Quieres salir?", null, 0, 0, null, null, e);
-			System.out.println(resp);
+
 			if (resp == 0) {
 				try {
 					miProyectoDTO.getConnection().close();
@@ -276,7 +273,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			if (Coordinador.esProfesor) { // Si es profesor, permite todo
 
-				System.out.println("He clikado en botón consulta de la pestaña proyectos");
 				miBuscarProyectos.setVisible(true);
 				miDetallesProyectos.setVisible(false);
 
@@ -317,7 +313,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			if (Coordinador.esProfesor) { // Si es profesor, permite buscar alumnos
 
-				System.out.println("He clikado en botón consulta de la pestaña alumnos");
 				miBuscarAlumnos.setVisible(true);
 
 			} else { // Si no, muestra el detalle del usuario loggeado
@@ -365,10 +360,8 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 		if (e.getSource() == miBuscarAlumnos.getBtnBuscar()) {
 
-			System.out.println("He pulsado en buscar");
 			String textoABuscar = miBuscarAlumnos.getTxtBuscar().getText().trim();
 
-			System.out.println(textoABuscar);
 			ArrayList<UsuarioVO> resultadoBusqueda = miUsuarioDTO.miListaUsuariosFiltada(textoABuscar);
 			miBuscarAlumnos.generarTabla(resultadoBusqueda);
 
@@ -501,7 +494,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			int resp = JOptionPane.showOptionDialog(miVentanaAplicacion, "¿Quieres borrar el registro?", null, 0, 0,
 					null, null, e);
-			System.out.println(resp);
 
 			String respuesta = "";
 
@@ -511,7 +503,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 				if (usuario.getUser_id() > 0) {
 					respuesta = miUsuarioDTO.borrarUsuario(usuario);
 				} else {
-					System.out.println("NO HAY USER_ID!!!!!!!");
 				}
 				if (respuesta.equals("OK")) {
 
@@ -543,9 +534,8 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 		if (e.getSource() == miBuscarProyectos.getBtnBuscar()) {
 
-			System.out.println("He pulsado en buscar");
 			String textoABuscar = miBuscarProyectos.getTxtBuscar().getText().trim();
-			System.out.println(textoABuscar);
+
 			ArrayList<ProyectoVO> resultadoBusqueda = miProyectoDTO.miListaProyectosFiltrada(textoABuscar);
 			miBuscarProyectos.generarTabla(resultadoBusqueda);
 
@@ -598,7 +588,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			String textoABuscar = miDetallesProyectos.getTxtBuscar().getText().trim();
 
-			System.out.println(textoABuscar);
 			ArrayList<UsuarioVO> resultadoBusqueda = miUsuarioDTO.miListaUsuariosFiltada(textoABuscar);
 			miDetallesProyectos.rellenarTabla(resultadoBusqueda);
 
@@ -728,7 +717,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			int resp = JOptionPane.showOptionDialog(miVentanaAplicacion, "¿Quieres borrar el registro?", null, 0, 0,
 					null, null, e);
-			System.out.println(resp);
 
 			String respuesta = "";
 
@@ -776,7 +764,6 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 	private void comprobarRespuesta(UsuarioVO usuarioLogeando, String resp) {
 		if (resp.equals("Logged")) {
 
-			System.out.println("usuario logeado");
 			JOptionPane.showMessageDialog(null, "Bienvenido " + usuarioLogeando.getNick_name());
 
 			miVentanaAplicacion.getSideBar().getLblUsuario().setText(miVentanaLogin.getTxtUser().getText());
@@ -786,19 +773,17 @@ public class Coordinador implements ActionListener, KeyListener, ItemListener {
 
 			JOptionPane.showMessageDialog(null, "Debes rellenar ambos campos", "Campos sin rellenar",
 					JOptionPane.WARNING_MESSAGE);
-			System.out.println("rellenar todos los campos");
+
 		} else if (resp.equals("Error")) {
 
 			JOptionPane.showMessageDialog(null, "Fallo en la base de datos");
-			System.out.println("Excepción en DB");
 
 		} else {
 
 			JOptionPane.showMessageDialog(null, "Credenciales no válidas");
-			System.out.println("usuario no encontrado");
+
 		}
 
-		System.out.println(Coordinador.esProfesor);
 		if (!Coordinador.esProfesor) {
 			vistaAlumnos();
 		} else {

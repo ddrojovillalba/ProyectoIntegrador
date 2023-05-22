@@ -78,8 +78,6 @@ public class ProyectoDTO {
 			consulta = "SELECT proyecto_id, nombre_proyecto, area_id, curso FROM proyectos";
 		}
 
-		System.out.println(busqueda + ", " + consulta);
-
 		try {
 			prepStatement = connection.prepareStatement(consulta);
 			if (!busqueda.equals("")) {
@@ -359,7 +357,6 @@ public class ProyectoDTO {
 			resultado = "Error";
 		}
 
-		System.out.println(resultado);
 		return resultado;
 
 	}
