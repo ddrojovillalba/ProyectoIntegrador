@@ -1,5 +1,5 @@
 /**
- * Este paquete contiene las clases de la interfaz de usuario para el Proyecto Integrador.
+ * Paquete con interfaces de usuario del Proyecto Integrador.
  */
 package VentanaProyectoIntegrador;
 
@@ -8,22 +8,20 @@ import java.awt.Font;
 
 /**
  * Clase DetallesAlumnos.
- * Esta clase es una ventana de la interfaz de usuario que muestra los detalles de los alumnos.
- * Hereda de JFrame y se utiliza para presentar información detallada sobre un alumno específico.
+ * Ventana para mostrar detalles de alumnos. Extiende de JFrame.
  * 
  * @author Mario
  */
 public class DetallesAlumnos extends JFrame {
 
-	// Etiqueta para el título de la ventana
+	// Título de la ventana
 	JLabel lblDetalles;
 	
-	// Etiqueta para mostrar los datos del alumno
+	// Datos del alumno
 	JLabel lblDatos;
 	
 	/**
-	 * Constructor de la clase DetallesAlumnos.
-	 * Inicializa la ventana y los componentes de la interfaz de usuario.
+	 * Constructor de DetallesAlumnos. Configura la ventana y componentes.
 	 */
 	public DetallesAlumnos() {
 		super("Detalles de alumnos");
@@ -31,8 +29,7 @@ public class DetallesAlumnos extends JFrame {
 	}
 
 	/**
-	 * Método para inicializar los componentes de la interfaz de usuario de la ventana.
-	 * Configura el layout, crea e inicializa las etiquetas, y las añade al contenedor principal.
+	 * Método para configurar componentes de la interfaz.
 	 */
 	private void inicializarComponentes() {
 		getContentPane().setLayout(null);
