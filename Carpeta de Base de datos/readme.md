@@ -6,7 +6,8 @@ Tabla de modelo E/R
 Normalización
 [TRABAJO (1).pdf](https://github.com/ddrojovillalba/ProyectoIntegrador/files/11331213/TRABAJO.1.pdf)
 
-[Nuevo Documento de Microsoft Word (Recuperado automáticamente).docx](https://github.com/ddrojovillalba/ProyectoIntegrador/files/11529206/Nuevo.Documento.de.Microsoft.Word.Recuperado.automaticamente.docx)
+[Correción de la base de datos.pdf](https://github.com/ddrojovillalba/ProyectoIntegrador/files/11542520/Correcion.de.la.base.de.datos.pdf)
+
 
 # Base de Datos del Proyecto Integrador
 
